@@ -118,7 +118,10 @@ ROUTES = [
       rationale="Infrastructure and utilities tour. Event space, park, substation, gas campus, then the historic house and a meal. Pairs with V4a as a two-session series."),
 ]
 
-SCALE_COLOR = {"HOUSEHOLD":"#D85390","BLOCK":"#D85390","NEIGHBORHOOD":"#6CDF67","REGIONAL":"#9076F7"}
+# Light is the DEFAULT theme for both the web map and print.
+# `color` = light. `color_dark` is the alternate for a dark-mode toggle.
+SCALE_COLOR_LIGHT = {"HOUSEHOLD":"#D51470","BLOCK":"#D51470","NEIGHBORHOOD":"#118026","REGIONAL":"#6844D3"}
+SCALE_COLOR_DARK  = {"HOUSEHOLD":"#D85390","BLOCK":"#D85390","NEIGHBORHOOD":"#6CDF67","REGIONAL":"#9076F7"}
 
 # ---------------------------------------------------------------- helpers
 def haversine(a, b):
@@ -167,7 +170,9 @@ for r in ROUTES:
 for s in STOPS:
     p = {"kind": "stop", "stop_id": s["id"], "name": s["name"], "address": s["address"],
          "short": s["short"], "long": s["long"],
-         "scale": s["scale"], "access": s["access"], "color": SCALE_COLOR[s["scale"]],
+         "scale": s["scale"], "access": s["access"],
+         "color": SCALE_COLOR_LIGHT[s["scale"]],
+         "color_dark": SCALE_COLOR_DARK[s["scale"]],
          "energy_connection": s["energy"], "conversation": s["talk"], "resource": s["resource"]}
     if s.get("todo"):
         p["todo"] = s["todo"]
@@ -187,7 +192,8 @@ geo = {
    "popup_fields": ["name", "address", "long"],
    "popup_note": "INTERACTIVE MAP POPUPS RENDER ONLY name, address AND long. The energy_connection, conversation and resource fields are facilitator material for the printed Green Book and the walkshop script — do NOT render them in map popups.",
    "static_map_note": "Static map shows NUMBERED PINS ONLY. No inline labels. Names go in a legend strip keyed to stop_id, using the short field.",
-   "color_note": "Pin fill from properties.color (derived from scale). Pin outline encodes access. See CLAUDE.md > Brand.",
+   "theme": "light",
+   "color_note": "LIGHT IS THE DEFAULT THEME for both web and print. Pin fill from properties.color. properties.color_dark is the alternate for a dark-mode toggle only. Pin outline encodes access. See CLAUDE.md > Brand.",
    "scale_groups": {"HOUSEHOLD": "a single home", "BLOCK": "a business or block",
                     "NEIGHBORHOOD": "shared neighborhood assets", "REGIONAL": "utility-scale systems"},
    "access_values": {"open": "open to anyone", "visitor": "open as a visitor",

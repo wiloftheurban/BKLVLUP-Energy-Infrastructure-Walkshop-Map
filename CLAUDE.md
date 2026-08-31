@@ -76,26 +76,31 @@ through visually.
 
 ### Data colors — grouped by scale
 
-Pins are coloured by `properties.scale`, which answers "at what level does this
-sit in the energy system." Colour comes pre-resolved in `properties.color`.
+**Light is the default theme, for both the web map and print.** Pins are
+coloured by `properties.scale`. Colour comes pre-resolved: `properties.color`
+is the light value, `properties.color_dark` is the alternate.
 
-```
-HOUSEHOLD      #D85390   4.12:1   Johnson Energy Clinic, Wyckoff House
-BLOCK          #D85390   4.12:1   Chef's Choice, De Event Room, Footprints
-NEIGHBORHOOD   #6CDF67   9.19:1   Library, Hub site, EF Village, Railroad Pgd
-REGIONAL       #9076F7   4.54:1   Con Ed Gateway, National Grid
-```
+| Group | **Light (default)** | On paper | Dark alternate |
+|---|---|---|---|
+| REGIONAL | `#6844D3` | 6.15 : 1 | `#9076F7` |
+| NEIGHBORHOOD | `#118026` | 4.99 : 1 | `#6CDF67` |
+| HOUSEHOLD | `#D51470` | 4.96 : 1 | `#D85390` |
+| BLOCK | `#D51470` | 4.96 : 1 | `#D85390` |
 
 Household and block share a hue and separate by **pin size** — scale is also
 encoded by diameter, smallest for household through largest for regional. That
 keeps the palette to three colours while carrying four categories, which
 matters on a 5x7 card where a fourth hue would crowd the legend.
 
-CVD-checked under protanopia and deuteranopia: every pair clears dE 45+.
+Never use `#C0FD47` or `#6CDF67` on a light background: 1.19 : 1 and 1.62 : 1,
+effectively invisible. Those are dark-theme values only.
+
+CVD-checked under protanopia and deuteranopia: every pair clears comfortably in
+both themes.
 
 **Numbers carry identity, colour is secondary.** Every pin shows its `stop_id`,
-1–11, in `#22232E` on the fill. On the static map the number is the *only*
-identifier, so it must never be dropped or shrunk below 12pt.
+1–11. On the static map the number is the *only* identifier, so it must never
+be dropped or shrunk below 12pt.
 
 ### Access — pin outline, not fill
 
@@ -116,62 +121,77 @@ address or the block, and ideally contact the current owner.
 
 ### Active pin
 
-Lime `#C0FD47` fill, `#22232E` numeral, 12.90 : 1 both ways. On dark, lime is
-already the headline color, so this reads as continuity rather than an
-exception — lime means "the thing you are looking at."
+**Light (default):** `#22232E` disc, lime `#C0FD47` numeral. 15.32 : 1 against
+paper, 12.90 : 1 inside. Lime never touches a light background directly — only
+the inside of the dark disc.
+
+**Dark alternate:** inverted — lime `#C0FD47` disc, `#22232E` numeral.
+
+In both themes the active pin is the single highest-contrast element on the
+map, and lime is always attached to it. Lime means "the thing you are looking
+at" and is used for nothing else.
 
 ### Route
 
-`#9076F7`, 4px. **No white casing** — on a dark basemap the line separates on
-its own. Optional spur: same color, dashed `8 6`.
+**Light (default):** `#6844D3`, 4px, over a 6px `#FDFDFD` casing. The casing is
+required — without it the line disappears crossing road fills.
+
+**Dark alternate:** `#9076F7`, 4px, no casing. On dark the line separates on
+its own.
+
+Optional spur in both themes: same colour, dashed `8 6`.
 
 ### Basemap
 
-**Web: MapLibre GL JS + a custom Mapbox style.** Not Leaflet, not off-the-shelf
-tiles. Two reasons, both functional:
+**Light is the default for both outputs.** Web map and print map use the same
+Mapbox light style, so the two deliverables read as one family and the palette
+does not have to be maintained twice.
 
-1. **Exact brand match.** Land set to `#22232E` means the map and the page
-   frame are the same dark. Off-the-shelf dark tiles are a neutral near-black
-   and sit inside a blue-black frame as a visible seam.
-2. **Label control.** A walking tour needs street names and nothing else.
-   Stock styles are all-or-nothing; a custom style keeps street labels and
-   drops POI, transit, and business labels that compete with the pins.
+The deciding factor is reading conditions. This is a July walking tour: a dark
+map on a phone held in direct sunlight, or a dark 5x7 card held in one hand,
+is harder to read than a light one — glare sits on top of dense ink instead of
+being absorbed. Screen and paper differ less than sun and shade do.
 
-Style is authored in Mapbox Studio before any code is written, starting from
-Dark Matter as a template. Style URL and token go in `web/config.js` (see
-"Mapbox setup" below). MapLibre reads Mapbox styles and is open source; the
-GeoJSON loading and popup logic are near-identical to Leaflet, but layer
-toggles and markers differ enough to be a real rewrite of that portion.
+Web uses **MapLibre GL JS** with the Mapbox style, not Leaflet. Two reasons:
+exact brand match (land set to `#FDFDFD` means map and page frame agree), and
+label control (a walking tour needs street names and nothing else; stock styles
+are all-or-nothing).
 
-Label rules for the style:
-```
-street labels      keep, muted     #AFB0BF at reduced opacity
-POI / business     remove
-transit labels     remove
-park / water fill  keep, very low contrast against #22232E
-road casing        subtle - roads read as texture, not structure
-```
+A **dark-mode toggle is optional and secondary.** If built, it swaps
+`STYLE_DARK` plus every `properties.color` for `properties.color_dark`, and
+drops the route casing. Do not build it before the light map works.
 
-**Static: contextily + CartoDB Positron or Dark Matter.** Do not use Mapbox for
-the print map. At 7x5 in with a 3.75 in map band the basemap is a backdrop that
-gets hand-finished in Illustrator regardless, and contextily is simpler.
-
-**Offline check before committing to Mapbox.** Vector tiles require a network
-request at load. If the map ever needs to run on a kiosk, in a low-signal
-location, or embedded somewhere that blocks external requests, self-hosted
-tiles or a raster fallback change this decision. Confirm with BKLVLUP.
+**Offline check.** Vector tiles need a network request at load. If the map ever
+runs on a kiosk or in a low-signal location, self-hosted tiles or a raster
+fallback change this. Confirm with BKLVLUP.
 
 ### Mapbox setup
 
+Account: **wiljones**. Two published Standard styles, both Monochrome, POI
+labels / landmark icons / admin boundaries off, road labels and pedestrian
+paths on.
+
 ```
-web/config.js        <- MAPBOX_TOKEN + STYLE_URL, gitignored
-web/config.example.js <- committed, placeholder values
+STYLE_DARK   web map            land #22232E, roads brightness 0.25
+STYLE_LIGHT  print basemap      land #FDFDFD, roads brightness 0.15
+             mapbox://styles/wiljones/cmth7gjh500d201s04i6j0wa3
 ```
 
-Never commit a real token. Use a **URL-restricted public token** (`pk.`),
-scoped to the deployment domain plus `localhost` — not the default token.
-Client-side exposure is normal for Mapbox and expected; URL restriction is what
-makes it safe. Free tier is generous and a community map will not approach it.
+Token and style URLs live in `web/config.js`, copied from
+`web/config.example.js`. `config.js` is gitignored.
+
+Use a **URL-restricted public token** (`pk.`) scoped to `localhost:*` and
+`wiloftheurban.github.io/*`. Client-side exposure of a public token is normal
+and expected for Mapbox; URL restriction is the actual control. Never commit
+an `sk.` secret token.
+
+Note the account/repo mismatch: Mapbox is **wiljones**, GitHub is
+**wiloftheurban**. The token restriction uses the GitHub Pages domain.
+
+Both styles are **Mapbox Standard**, not classic. MapLibre's Standard support
+is newer than its classic support. If the style fails to load in MapLibre,
+suspect this first — the fix is rebuilding both from classic Light/Dark
+templates. `FALLBACK_STYLE` in config keeps the map usable meanwhile.
 
 ### Type
 
@@ -188,21 +208,12 @@ Minimum label size 8pt. On dark, set body text one notch heavier than you
 would on light — light-on-dark type optically thins, and Urbanist Regular at
 small sizes on `#22232E` starts to break up.
 
-### Print decision — still open
+### Print decision — settled
 
-Dark is right for screen. For the printed Green Book it is a real decision,
-and the deciding factor is not ink cost. At $400 for 100 booklets this is
-digital printing, which prices per impression, so heavy coverage does not cost
-more. The actual risks are:
-
-- **Field legibility.** This is a July walking tour. A dark page in direct
-  sunlight is harder to read than a light one — glare sits on top of the ink
-  instead of being absorbed by the paper.
-- **Toner cracking at the fold** on a dark flood, and rub-off on uncoated stock.
-
-If the printed edition goes light, invert to the deck palette and the darkened
-data colors (`#6844D3` / `#118026` / `#D51470` on Positron). Test a real proof
-outdoors before committing either way.
+Light, for both web and print. At $400 for 100 booklets this is digital
+printing, which prices per impression, so coverage does not affect cost — the
+argument was never about ink. It is about field legibility in July sun, and
+about not maintaining two palettes.
 
 ## Geometry
 
@@ -283,10 +294,27 @@ done.
 
 ### Static — `static/render.py`
 
-GeoPandas + contextily + matplotlib. Takes the variant id as a CLI argument.
-Exports SVG first (for Illustrator) and 300dpi PNG second. The script owns
-geometry and basemap; final typography is hand-finished, so do not fight
-matplotlib's text rendering. Do not use Mapbox here.
+Takes the variant id as a CLI argument. Exports SVG and 300dpi PNG at
+7 x 5 in landscape. Uses the **light** palette throughout — see "Light theme —
+data colors". Do not reuse the dark pin colors here.
+
+**Basemap: Mapbox Static Images API with `STYLE_LIGHT`.** This supersedes
+earlier contextily guidance. The Static Images API renders the brand-matched
+light style directly, which contextily cannot do, and at @2x a 1280px request
+returns 2560px — comfortably above the 2100px needed for 7 in at 300 dpi.
+
+Request the image once, cache it to `static/cache/`, and composite pins, route
+and legend over it in matplotlib. Do not re-request on every run; it burns
+quota and slows iteration.
+
+Read the token from `web/config.js` or an env var. Never hardcode it in the
+script.
+
+If the Static Images request fails, fall back to contextily with CartoDB
+Positron and log clearly that the basemap is not brand-matched.
+
+The script owns geometry and basemap; final typography is hand-finished in
+Illustrator, so do not fight matplotlib's text rendering.
 
 Run the script and open the PNG before reporting done. Check for pins outside
 the frame, overlapping pins, and legend fit.
