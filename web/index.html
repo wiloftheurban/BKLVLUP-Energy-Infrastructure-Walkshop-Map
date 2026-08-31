@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ecopower Infrastructure Walk — BKLVLUP</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/3.6.2/maplibre-gl.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/3.6.2/maplibre-gl.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Urbanist:wght@400;500;600&family=Mansalva&display=swap" />
+
+<style>
+  :root {
+    --page:   #22232E;
+    --card:   #292A39;
+    --lime:   #C0FD47;
+    --green:  #6CDF67;
+    --pink:   #D85390;
+    --violet-map: #9076F7;
+    --white:  #FDFDFD;
+    --muted:  #AFB0BF;
+    --card-border: rgba(253, 253, 253, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--page);
+    color: var(--white);
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500; /* one notch heavier than Regular on dark, per CLAUDE.md */
+  }
+
+  #map {
+    position: absolute;
+    inset: 0;
+    background: var(--page); /* never a blank/white flash */
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .accent {
+    font-family: 'Mansalva', cursive;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .panel {
+    position: absolute;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    z-index: 5;
+  }
+
+  #title-panel {
+    top: 16px;
+    left: 16px;
+    max-width: 320px;
+  }
+  #title-panel h1 { font-size: 19px; line-height: 1.15; color: var(--lime); }
+  #title-panel .sub { font-size: 12px; margin-top: 4px; }
+
+  #control-panel {
+    top: 16px;
+    right: 16px;
+    width: 280px;
+  }
+
+  #control-panel h2 {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    font-family: 'Urbanist', sans-serif;
+    margin-bottom: 8px;
+  }
+
+  #variant-select {
+    width: 100%;
+    background: var(--page);
+    color: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  #variant-meta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  #variant-meta strong { color: var(--white); }
+  #variant-meta .gather-end { color: var(--green); font-weight: 600; }
+
+  #layer-toggles {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--card-border);
+  }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .toggle-row input { accent-color: var(--lime); width: 15px; height: 15px; }
+
+  #status-line {
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    font-size: 11px;
+    color: var(--muted);
+    z-index: 5;
+    background: rgba(34,35,46,0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  /* --- pins --- */
+  .pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--page);
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .pin--anchor {
+    box-shadow: 0 0 0 5px rgba(192, 253, 71, 0.25), 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .pin--active {
+    background: var(--lime) !important;
+  }
+
+  /* --- popups --- */
+  .maplibregl-popup-content {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: var(--white);
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    max-width: 280px;
+  }
+  .maplibregl-popup-tip { border-top-color: var(--card) !important; border-bottom-color: var(--card) !important; }
+  .maplibregl-popup-close-button { color: var(--muted); font-size: 18px; }
+  .popup-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--lime);
+    margin-bottom: 4px;
+  }
+  .popup-address {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .popup-long {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    #control-panel { width: calc(100vw - 32px); right: 16px; }
+    #title-panel { max-width: calc(100vw - 32px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="panel" id="title-panel">
+  <h1>Ecopower Infrastructure Walk</h1>
+  <div class="sub accent">The Green Book — Energy Resilience Edition</div>
+</div>
+
+<div class="panel" id="control-panel">
+  <h2>Route Variant</h2>
+  <select id="variant-select"></select>
+  <div id="variant-meta"></div>
+
+  <div id="layer-toggles">
+    <h2>Layers</h2>
+    <label class="toggle-row"><input type="checkbox" id="toggle-route" checked> Route</label>
+    <label class="toggle-row"><input type="checkbox" id="toggle-pins" checked> Stop pins</label>
+  </div>
+</div>
+
+<div id="status-line">Loading…</div>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = window.TOUR_CONFIG || {};
+  const statusEl = document.getElementById('status-line');
+
+  const SCALE_SIZE = {
+    HOUSEHOLD: 20,
+    BLOCK: 24,
+    NEIGHBORHOOD: 28,
+    REGIONAL: 34
+  };
+
+  let geodata = null;
+  let variants = [];
+  let currentVariant = null;
+  let markers = [];        // {id, marker, el}
+  let activeMarkerEl = null;
+  let pinsVisible = true;
+  let routeVisible = true;
+
+  const CENTER = [-73.9219, 40.6478];
+
+  if (!cfg.STYLE_URL) {
+    statusEl.textContent = 'web/config.js missing — copy web/config.example.js and fill in a style URL/token.';
+  }
+
+  maplibregl.accessToken = cfg.MAPBOX_TOKEN || '';
+
+  // MapLibre GL JS (unlike Mapbox GL JS) does not resolve the mapbox:// style
+  // protocol on its own — rewrite it to a plain HTTPS Styles API URL so a
+  // STYLE_URL copied straight from Mapbox Studio actually loads.
+  function resolveStyleUrl(url, token) {
+    if (url && url.indexOf('mapbox://styles/') === 0) {
+      const path = url.slice('mapbox://styles/'.length);
+      return 'https://api.mapbox.com/styles/v1/' + path + '?access_token=' + encodeURIComponent(token || '');
+    }
+    return url;
+  }
+
+  const map = new maplibregl.Map({
+    container: 'map',
+    style: resolveStyleUrl(cfg.STYLE_URL, cfg.MAPBOX_TOKEN),
+    center: CENTER,
+    zoom: 14.5,
+    minZoom: 12,
+    maxZoom: 19
+  });
+
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+
+  // --- Hard rule 0 fallback: never render a blank map ---
+  let fellBack = false;
+  let styleReady = false;
+
+  map.on('error', (e) => {
+    if (fellBack) return;
+    if (map.isStyleLoaded()) return; // an error unrelated to the initial style load
+    fellBack = true;
+    console.warn('[tour] STYLE_URL failed to load, falling back to FALLBACK_STYLE.', e && e.error);
+    statusEl.textContent = 'Primary style failed to load — using fallback basemap.';
+    map.setStyle(cfg.FALLBACK_STYLE);
+  });
+
+  // style.load fires for the initial style AND every subsequent setStyle
+  // call, so it's the one signal that reliably means "safe to add layers" —
+  // relying on the one-time 'load' event misses the fallback-recovery case.
+  map.on('style.load', () => {
+    styleReady = true;
+    tryInit();
+  });
+
+  fetch('../data/tour.geojson')
+    .then((r) => {
+      if (!r.ok) throw new Error('tour.geojson HTTP ' + r.status);
+      return r.json();
+    })
+    .then((data) => {
+      geodata = data;
+      variants = (data.metadata && data.metadata.route_variants) || [];
+      buildVariantSwitcher();
+      tryInit();
+    })
+    .catch((err) => {
+      console.error('[tour] failed to load data/tour.geojson', err);
+      statusEl.textContent = 'Failed to load data/tour.geojson — see console.';
+    });
+
+  function tryInit() {
+    if (!styleReady || !geodata) return;
+    addRouteLayers();
+    currentVariant = currentVariant || (variants[0] && variants[0].id);
+    renderVariant(currentVariant, { fitBounds: true });
+    statusEl.textContent = fellBack
+      ? 'Fallback basemap in use — check STYLE_URL/token in web/config.js.'
+      : 'Loaded ' + geodata.features.filter(f => f.properties.kind === 'stop').length + ' stops.';
+  }
+
+  // ---------------------------------------------------------------
+  // Route line layers (source data swapped per variant)
+  // ---------------------------------------------------------------
+  function addRouteLayers() {
+    if (map.getSource('route-main')) return; // already added on this style
+
+    map.addSource('route-main', { type: 'geojson', data: emptyFC() });
+    map.addSource('route-spur', { type: 'geojson', data: emptyFC() });
+
+    map.addLayer({
+      id: 'route-main-line',
+      type: 'line',
+      source: 'route-main',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': '#9076F7', 'line-width': 4 }
+    });
+
+    map.addLayer({
+      id: 'route-spur-line',
+      type: 'line',
+      source: 'route-spur',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#9076F7',
+        'line-width': 4,
+        'line-dasharray': [2, 1.5]
+      }
+    });
+
+    setLayerVisibility('route-main-line', routeVisible);
+    setLayerVisibility('route-spur-line', routeVisible);
+  }
+
+  function emptyFC() {
+    return { type: 'FeatureCollection', features: [] };
+  }
+
+  function setLayerVisibility(id, visible) {
+    if (!map.getLayer(id)) return;
+    map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+  }
+
+  // ---------------------------------------------------------------
+  // Variant switcher (built entirely from metadata.route_variants)
+  // ---------------------------------------------------------------
+  function buildVariantSwitcher() {
+    const select = document.getElementById('variant-select');
+    select.innerHTML = '';
+    variants.forEach((v) => {
+      const opt = document.createElement('option');
+      opt.value = v.id;
+      opt.textContent = v.name;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', (e) => {
+      currentVariant = e.target.value;
+      renderVariant(currentVariant, { fitBounds: true });
+    });
+  }
+
+  function renderVariant(variantId, opts) {
+    if (!geodata) return;
+    const variant = variants.find((v) => v.id === variantId);
+    if (!variant) return;
+
+    updateVariantMeta(variant);
+
+    const routeFeatures = geodata.features.filter(
+      (f) => f.properties.kind === 'route' && f.properties.variant === variantId
+    );
+    const mainFeatures = routeFeatures.filter((f) => !f.properties.optional);
+    const spurFeatures = routeFeatures.filter((f) => f.properties.optional);
+
+    if (map.getSource('route-main')) {
+      map.getSource('route-main').setData({ type: 'FeatureCollection', features: mainFeatures });
+    }
+    if (map.getSource('route-spur')) {
+      map.getSource('route-spur').setData({ type: 'FeatureCollection', features: spurFeatures });
+    }
+
+    const stopIds = new Set([...(variant.order || []), ...(variant.spur || [])]);
+    const stopFeatures = geodata.features.filter(
+      (f) => f.properties.kind === 'stop' && stopIds.has(f.properties.stop_id)
+    );
+    renderPins(stopFeatures);
+
+    if (opts && opts.fitBounds) {
+      fitToFeatures([...routeFeatures, ...stopFeatures]);
+    }
+  }
+
+  function updateVariantMeta(variant) {
+    const el = document.getElementById('variant-meta');
+    el.innerHTML =
+      '<span class="gather-end">' + escapeHtml(variant.gather) + ' &rarr; ' + escapeHtml(variant.end) + '</span><br>' +
+      '<strong>' + variant.walk_miles + ' mi</strong> &middot; <strong>' + variant.walk_minutes + ' min walk</strong>';
+  }
+
+  function fitToFeatures(features) {
+    if (!features.length) return;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    features.forEach((f) => {
+      const coords = f.geometry.type === 'Point' ? [f.geometry.coordinates] : f.geometry.coordinates;
+      coords.forEach(([x, y]) => {
+        if (x < minX) minX = x;
+        if (y < minY) minY = y;
+        if (x > maxX) maxX = x;
+        if (y > maxY) maxY = y;
+      });
+    });
+    map.fitBounds([[minX, minY], [maxX, maxY]], { padding: 80, duration: 400 });
+  }
+
+  // ---------------------------------------------------------------
+  // Pins
+  // ---------------------------------------------------------------
+  function renderPins(stopFeatures) {
+    markers.forEach((m) => m.marker.remove());
+    markers = [];
+    activeMarkerEl = null;
+
+    stopFeatures
+      .sort((a, b) => a.properties.stop_id - b.properties.stop_id)
+      .forEach((feature) => {
+        const props = feature.properties;
+        const diameter = SCALE_SIZE[props.scale] || 24;
+        const dashed = props.access === 'sidewalk';
+
+        const el = document.createElement('div');
+        el.className = 'pin' + (props.stop_id === 6 ? ' pin--anchor' : '');
+        el.style.width = diameter + 'px';
+        el.style.height = diameter + 'px';
+        el.style.fontSize = Math.max(10, Math.round(diameter * 0.42)) + 'px';
+        el.style.background = props.color;
+        el.style.border = (dashed ? '2px dashed ' : '2px solid ') + '#FDFDFD';
+        el.textContent = props.stop_id;
+        el.style.display = pinsVisible ? 'flex' : 'none';
+
+        const popup = new maplibregl.Popup({ offset: diameter / 2 + 6, closeButton: true })
+          .setHTML(popupHtml(props));
+
+        const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(popup)
+          .addTo(map);
+
+        el.addEventListener('click', () => setActive(el));
+        popup.on('close', () => {
+          if (el === activeMarkerEl) clearActive();
+        });
+
+        markers.push({ id: props.stop_id, marker, el });
+      });
+  }
+
+  function popupHtml(props) {
+    // Hard rule 2 / metadata.popup_fields: name, address, long — nothing else.
+    return (
+      '<div class="popup-name">' + escapeHtml(props.name) + '</div>' +
+      '<div class="popup-address">' + escapeHtml(props.address) + '</div>' +
+      '<div class="popup-long">' + escapeHtml(props.long) + '</div>'
+    );
+  }
+
+  function setActive(el) {
+    clearActive();
+    el.classList.add('pin--active');
+    activeMarkerEl = el;
+  }
+
+  function clearActive() {
+    if (activeMarkerEl) activeMarkerEl.classList.remove('pin--active');
+    activeMarkerEl = null;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+
+  // ---------------------------------------------------------------
+  // Layer toggles
+  // ---------------------------------------------------------------
+  document.getElementById('toggle-route').addEventListener('change', (e) => {
+    routeVisible = e.target.checked;
+    setLayerVisibility('route-main-line', routeVisible);
+    setLayerVisibility('route-spur-line', routeVisible);
+  });
+
+  document.getElementById('toggle-pins').addEventListener('change', (e) => {
+    pinsVisible = e.target.checked;
+    markers.forEach((m) => { m.el.style.display = pinsVisible ? 'flex' : 'none'; });
+  });
+})();
+</script>
+</body>
+</html>
