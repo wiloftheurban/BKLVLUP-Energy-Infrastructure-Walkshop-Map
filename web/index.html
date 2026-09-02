@@ -1,25 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Ecopower Infrastructure Walk — BKLVLUP</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/3.6.2/maplibre-gl.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/3.6.2/maplibre-gl.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Urbanist:wght@400;500;600&family=Mansalva&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Urbanist:wght@400;500;600;700&family=Mansalva&display=swap" />
 
 <style>
+  /* ---------- LIGHT (default — field legibility in direct sun) ---------- */
   :root {
-    --page:   #22232E;
-    --card:   #292A39;
-    --lime:   #C0FD47;
-    --green:  #6CDF67;
-    --pink:   #D85390;
-    --violet-map: #9076F7;
-    --white:  #FDFDFD;
-    --muted:  #AFB0BF;
-    --card-border: rgba(253, 253, 253, 0.10);
+    --page:        #FDFDFD;
+    --card:        #FFFFFF;
+    --sheet:       #F4F4F6;
+    --ink:         #1C1D26;   /* body copy            15.9:1 */
+    --ink-2:       #6E6E7A;   /* secondary body copy   4.95:1 */
+    --label:       #5B5C6B;   /* labels only           6.4:1 */
+    --accent:      #4B7A00;   /* lime, darkened for light ground  4.9:1 */
+    --accent-ink:  #FDFDFD;
+    --route:       #6844D3;
+    --border:      rgba(28, 29, 38, 0.14);
+    --hover:       rgba(28, 29, 38, 0.05);
+    --active-bg:   rgba(75, 122, 0, 0.12);
+    --start:       #118026;
+    --end:         #D51470;
+    --flag-ink:    #FDFDFD;
+    --shadow:      0 8px 28px rgba(28, 29, 38, 0.16);
+    --sidebar-w:   400px;
+  }
+  /* ---------- DARK (CLAUDE.md dark-tuned set) ---------- */
+  :root[data-theme="dark"] {
+    --page:        #22232E;
+    --card:        #292A39;
+    --sheet:       #292A39;
+    --ink:         #FDFDFD;
+    --ink-2:       #C6C7D4;
+    --label:       #AFB0BF;
+    --accent:      #C0FD47;
+    --accent-ink:  #22232E;
+    --route:       #9076F7;
+    --border:      rgba(253, 253, 253, 0.14);
+    --hover:       rgba(253, 253, 253, 0.06);
+    --active-bg:   rgba(192, 253, 71, 0.12);
+    --start:       #6CDF67;
+    --end:         #D85390;
+    --flag-ink:    #22232E;
+    --shadow:      0 8px 28px rgba(0, 0, 0, 0.5);
   }
 
   * { box-sizing: border-box; }
@@ -27,165 +55,403 @@
   html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;   /* fallback */
+    height: 100dvh;  /* mobile browser chrome safe */
+    overflow: hidden;
     background: var(--page);
-    color: var(--white);
+    color: var(--ink);
     font-family: 'Urbanist', sans-serif;
-    font-weight: 500; /* one notch heavier than Regular on dark, per CLAUDE.md */
-  }
-
-  #map {
-    position: absolute;
-    inset: 0;
-    background: var(--page); /* never a blank/white flash */
-  }
-
-  h1, h2, h3, .display {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    margin: 0;
-  }
-
-  .accent {
-    font-family: 'Mansalva', cursive;
-    font-weight: 400;
-    color: var(--muted);
-  }
-
-  .panel {
-    position: absolute;
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-    z-index: 5;
-  }
-
-  #title-panel {
-    top: 16px;
-    left: 16px;
-    max-width: 320px;
-  }
-  #title-panel h1 { font-size: 19px; line-height: 1.15; color: var(--lime); }
-  #title-panel .sub { font-size: 12px; margin-top: 4px; }
-
-  #control-panel {
-    top: 16px;
-    right: 16px;
-    width: 280px;
-  }
-
-  #control-panel h2 {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    font-family: 'Urbanist', sans-serif;
-    margin-bottom: 8px;
-  }
-
-  #variant-select {
-    width: 100%;
-    background: var(--page);
-    color: var(--white);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-  }
-
-  #variant-meta {
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--muted);
+    font-weight: 500;
+    font-size: 16px;
     line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
   }
-  #variant-meta strong { color: var(--white); }
-  #variant-meta .gather-end { color: var(--green); font-weight: 600; }
 
-  #layer-toggles {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid var(--card-border);
+  #map { position: absolute; inset: 0; background: var(--page); }
+
+  h1, h2, h3 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0; }
+
+  /* ================= sidebar / bottom sheet ================= */
+  #sidebar {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    max-width: 100vw;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    transition: transform 0.25s ease;
   }
-  .toggle-row {
+  #sidebar.collapsed { transform: translateX(-100%); }
+
+  #sidebar-header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    padding-right: 8px;
+  }
+  #sidebar-toggle {
+    flex: 1 1 auto;
+    min-height: 48px;
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
-  .toggle-row input { accent-color: var(--lime); width: 15px; height: 15px; }
-
-  #status-line {
-    position: absolute;
-    bottom: 10px;
-    left: 16px;
-    font-size: 11px;
-    color: var(--muted);
-    z-index: 5;
-    background: rgba(34,35,46,0.7);
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-
-  /* --- pins --- */
-  .pin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    background: transparent;
+    border: 0;
+    color: var(--accent);
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    padding: 12px 20px;
     cursor: pointer;
-    color: var(--page);
+  }
+  #sidebar-toggle:hover { background: var(--hover); }
+
+  #theme-toggle {
+    flex: 0 0 auto;
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--ink);
+    font-size: 17px;
+    cursor: pointer;
+  }
+  #theme-toggle:hover { background: var(--hover); }
+
+  #sidebar-reopen {
+    position: absolute;
+    top: 14px; left: 14px;
+    z-index: 10;
+    min-height: 44px;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+
+  #sidebar-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* ---- intro ---- */
+  #tour-intro { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+  #tour-kicker {
+    font-weight: 700; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  #tour-title { font-size: 27px; line-height: 1.12; margin-bottom: 12px; }
+
+  #overview-toggle {
+    width: 100%;
+    min-height: 44px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 14px;
+    color: var(--ink);
     font-family: 'Urbanist', sans-serif;
     font-weight: 600;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
   }
-  .pin--anchor {
-    box-shadow: 0 0 0 5px rgba(192, 253, 71, 0.25), 0 1px 3px rgba(0,0,0,0.5);
+  #overview-toggle:hover { background: var(--hover); }
+  #overview-toggle .caret { color: var(--label); font-size: 13px; }
+
+  #tour-desc { margin-top: 12px; }
+  #tour-desc p {
+    margin: 0 0 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 65ch;
+    color: var(--ink-2);
   }
-  .pin--active {
-    background: var(--lime) !important;
+  #tour-desc p:last-child { margin-bottom: 0; }
+
+  /* ---- controls ---- */
+  #controls { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .control-label {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--label); font-weight: 700; margin-bottom: 8px;
+  }
+  #variant-select {
+    width: 100%;
+    min-height: 48px;                /* >=44px tap target */
+    background: var(--page);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 12px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 16px;                 /* <16px triggers iOS auto-zoom */
+  }
+  #variant-blurb {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 65ch;
+    color: var(--ink-2);
+  }
+  #variant-meta { margin-top: 10px; font-size: 16px; color: var(--ink-2); }
+  #variant-meta strong { color: var(--ink); }
+  #variant-meta .gather-end { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+
+  #route-btn {
+    margin-top: 14px;
+    width: 100%;
+    min-height: 48px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    border-radius: 9px;
+    padding: 12px 14px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #route-btn.is-on { background: transparent; color: var(--accent); }
+  #route-hint { margin-top: 7px; font-size: 14px; color: var(--label); }
+
+  #pins-row {
+    margin-top: 6px;
+    min-height: 44px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 16px; color: var(--ink-2);
+    cursor: pointer;
+  }
+  #pins-row input { accent-color: var(--accent); width: 22px; height: 22px; flex: 0 0 auto; }
+
+  /* ---- legend ---- */
+  #legend { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  #legend-note { font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 65ch; margin-bottom: 14px; }
+  .legend-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+  .legend-row:last-child { margin-bottom: 0; }
+  .legend-swatch {
+    flex: 0 0 auto; border-radius: 50%;
+    border: 2px solid var(--page); box-shadow: 0 0 0 1px var(--border);
+    margin-top: 3px;
+  }
+  .legend-label { font-weight: 700; font-size: 16px; color: var(--ink); }
+  .legend-desc { font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 65ch; }
+
+  /* ---- stop list ---- */
+  #stop-list-head {
+    padding: 16px 20px 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--label); font-weight: 700;
+  }
+  #stop-list { padding: 0 12px 8px; }
+
+  .stop-item {
+    width: 100%;
+    min-height: 44px;
+    display: flex; gap: 12px; align-items: flex-start;
+    text-align: left;
+    background: transparent; border: 0; border-radius: 10px;
+    padding: 12px 10px;
+    cursor: pointer; color: inherit; font-family: inherit;
+  }
+  .stop-item + .stop-item { border-top: 1px solid var(--border); }
+  .stop-item:hover { background: var(--hover); }
+  .stop-item.active { background: var(--active-bg); }
+
+  .stop-badge {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    color: var(--flag-ink);
+    border: 2px solid var(--page);
+    box-shadow: 0 0 0 1px var(--border);
+    margin-top: 1px;
+  }
+  .stop-badge.sidewalk { border-style: dashed; }
+  .stop-item.active .stop-badge {
+    background: var(--accent) !important;
+    color: var(--accent-ink);
+    box-shadow: 0 0 0 3px var(--active-bg);
   }
 
-  /* --- popups --- */
+  .stop-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .stop-name {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 16px; line-height: 1.3; color: var(--ink);
+  }
+  .stop-name .flagtag {
+    display: inline-block;
+    font-family: 'Urbanist', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--flag-ink); border-radius: 4px;
+    padding: 2px 6px; margin-left: 7px; vertical-align: 2px;
+  }
+  .stop-name .flagtag--start { background: var(--start); }
+  .stop-name .flagtag--end { background: var(--end); color: #FDFDFD; }
+  .stop-name .opt {
+    font-family: 'Urbanist', sans-serif; font-weight: 600;
+    font-size: 12px; color: var(--route);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .stop-short { font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 65ch; }
+
+  /* ---- credits ---- */
+  #credits {
+    padding: 16px 20px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px; line-height: 1.5; color: var(--label); max-width: 65ch;
+  }
+  #status-line {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--border);
+    padding: 10px 20px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    font-size: 13px; color: var(--label);
+  }
+
+  /* ================= popups ================= */
   .maplibregl-popup-content {
     background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 14px 16px;
-    color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    color: var(--ink);
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    max-width: 280px;
+    box-shadow: var(--shadow);
+    max-width: 300px;
+    max-height: 45vh;   /* fallback */
+    max-height: 45dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .maplibregl-popup-tip { border-top-color: var(--card) !important; border-bottom-color: var(--card) !important; }
-  .maplibregl-popup-close-button { color: var(--muted); font-size: 18px; }
+  .maplibregl-popup-tip {
+    border-top-color: var(--card) !important;
+    border-bottom-color: var(--card) !important;
+  }
+  .maplibregl-popup-close-button {
+    width: 44px; height: 44px;           /* >=44px tap target */
+    font-size: 24px; line-height: 1;
+    color: var(--label);
+    border-radius: 0 10px 0 0;
+  }
+  .maplibregl-popup-close-button:hover { background: var(--hover); color: var(--ink); }
   .popup-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    color: var(--lime);
-    margin-bottom: 4px;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 18px; line-height: 1.2; color: var(--ink);
+    margin: 0 34px 6px 0;
   }
-  .popup-address {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 8px;
+  .popup-address { font-size: 14px; color: var(--label); margin-bottom: 10px; }
+  .popup-long { font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 65ch; }
+  .popup-dir {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 14px; min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--border); border-radius: 9px;
+    color: var(--accent); font-weight: 700; font-size: 16px;
+    text-decoration: none;
   }
-  .popup-long {
-    font-size: 13px;
-    line-height: 1.5;
+  .popup-dir:hover { background: var(--hover); }
+
+  /* ================= pins ================= */
+  /* NOTE: never set `position` here — `.pin` and MapLibre's own
+     `.maplibregl-marker { position:absolute }` have equal specificity and this
+     sheet loads later, so declaring it detaches markers from their coordinate
+     when the map zooms. The 44x44 box is a transparent tap target; the visible
+     circle is .pin-dot inside it. */
+  .pin {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; padding: 0;
+    cursor: pointer;
+  }
+  .pin-dot {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    color: var(--flag-ink);
+    font-family: 'Urbanist', sans-serif; font-weight: 700;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    /* body sets line-height 1.5; inherited here it makes the flex line box
+       taller than the glyph and the numeral sits low in the circle. */
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+    text-indent: 0;
+    box-sizing: content-box;   /* the border must not eat the set diameter */
+  }
+  .pin--active .pin-dot {
+    background: var(--accent) !important;
+    color: var(--accent-ink);
+    box-shadow: 0 0 0 4px var(--active-bg), 0 1px 4px rgba(0,0,0,0.4);
   }
 
-  @media (max-width: 640px) {
-    #control-panel { width: calc(100vw - 32px); right: 16px; }
-    #title-panel { max-width: calc(100vw - 32px); }
+  .pin-flag {
+    position: absolute;
+    bottom: 100%; left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: -4px;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: 'Urbanist', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--flag-ink);
+    white-space: nowrap; pointer-events: none;
+    border: 1.5px solid var(--page);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  .pin-flag::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 4px solid transparent;
+  }
+  .pin-flag--start { background: var(--start); }
+  .pin-flag--start::after { border-top-color: var(--start); }
+  .pin-flag--end { background: var(--end); color: #FDFDFD; }
+  .pin-flag--end::after { border-top-color: var(--end); }
+
+  /* ================= narrow: bottom sheet ================= */
+  @media (max-width: 680px) {
+    #sidebar {
+      top: auto; bottom: 0; left: 0; right: 0;
+      width: 100%; max-width: none;
+      height: 64vh; height: 64dvh;
+      border-right: 0;
+      border-top: 1px solid var(--border);
+      border-radius: 16px 16px 0 0;
+    }
+    /* collapsed: slide down but keep the header bar as a grab handle */
+    #sidebar.collapsed { transform: translateY(calc(100% - 49px)); }
+    #sidebar-reopen { display: none; }
+    #tour-title { font-size: 23px; }
+    #sidebar-header::before {
+      content: ''; position: absolute; top: 7px; left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 4px; border-radius: 2px;
+      background: var(--border);
+    }
+    #sidebar-header { position: relative; padding-top: 6px; }
   }
 </style>
 </head>
@@ -193,220 +459,399 @@
 
 <div id="map"></div>
 
-<div class="panel" id="title-panel">
-  <h1>Ecopower Infrastructure Walk</h1>
-  <div class="sub accent">The Green Book — Energy Resilience Edition</div>
-</div>
+<button id="sidebar-reopen" type="button" hidden>&#9776;&nbsp; Tour stops</button>
 
-<div class="panel" id="control-panel">
-  <h2>Route Variant</h2>
-  <select id="variant-select"></select>
-  <div id="variant-meta"></div>
-
-  <div id="layer-toggles">
-    <h2>Layers</h2>
-    <label class="toggle-row"><input type="checkbox" id="toggle-route" checked> Route</label>
-    <label class="toggle-row"><input type="checkbox" id="toggle-pins" checked> Stop pins</label>
+<aside id="sidebar">
+  <div id="sidebar-header">
+    <button id="sidebar-toggle" type="button"><span class="chev">&#8249;</span> Hide tour stops</button>
+    <button id="theme-toggle" type="button" aria-label="Switch between light and dark map">&#9788;</button>
   </div>
-</div>
 
-<div id="status-line">Loading…</div>
+  <div id="sidebar-scroll">
+    <div id="tour-intro">
+      <div id="tour-kicker"></div>
+      <h1 id="tour-title">Ecopower Infrastructure Walk</h1>
+      <button id="overview-toggle" type="button" aria-expanded="true" aria-controls="tour-desc">
+        <span>What is this?</span><span class="caret">&#9662;</span>
+      </button>
+      <div id="tour-desc"></div>
+    </div>
+
+    <div id="controls">
+      <div class="control-label">Choose a route</div>
+      <select id="variant-select"></select>
+      <p id="variant-blurb"></p>
+      <div id="variant-meta"></div>
+
+      <button id="route-btn" type="button">Show walking route</button>
+      <div id="route-hint">Route hidden by default.</div>
+
+      <label id="pins-row"><input type="checkbox" id="toggle-pins" checked> Show numbered stop pins</label>
+    </div>
+
+    <div id="legend">
+      <div class="control-label">What the colors mean</div>
+      <div id="legend-note"></div>
+      <div id="legend-rows"></div>
+    </div>
+
+    <div id="stop-list-head">Stops in walking order</div>
+    <div id="stop-list"></div>
+
+    <div id="credits"></div>
+  </div>
+
+  <div id="status-line">Loading…</div>
+</aside>
 
 <script src="config.js"></script>
 <script>
 (function () {
   const cfg = window.TOUR_CONFIG || {};
-  const statusEl = document.getElementById('status-line');
+  const SIDEBAR_W = 400;
+  const NARROW = () => window.matchMedia('(max-width: 680px)').matches;
 
-  const SCALE_SIZE = {
-    HOUSEHOLD: 20,
-    BLOCK: 24,
-    NEIGHBORHOOD: 28,
-    REGIONAL: 34
+  const el = {
+    sidebar:   document.getElementById('sidebar'),
+    toggle:    document.getElementById('sidebar-toggle'),
+    reopen:    document.getElementById('sidebar-reopen'),
+    theme:     document.getElementById('theme-toggle'),
+    kicker:    document.getElementById('tour-kicker'),
+    title:     document.getElementById('tour-title'),
+    ovToggle:  document.getElementById('overview-toggle'),
+    desc:      document.getElementById('tour-desc'),
+    select:    document.getElementById('variant-select'),
+    blurb:     document.getElementById('variant-blurb'),
+    meta:      document.getElementById('variant-meta'),
+    routeBtn:  document.getElementById('route-btn'),
+    routeHint: document.getElementById('route-hint'),
+    pins:      document.getElementById('toggle-pins'),
+    legendNote:document.getElementById('legend-note'),
+    legendRows:document.getElementById('legend-rows'),
+    list:      document.getElementById('stop-list'),
+    credits:   document.getElementById('credits'),
+    status:    document.getElementById('status-line'),
   };
 
-  let geodata = null;
-  let variants = [];
-  let currentVariant = null;
-  let markers = [];        // {id, marker, el}
-  let activeMarkerEl = null;
-  let pinsVisible = true;
-  let routeVisible = true;
-
+  // Visible circle diameter by scale (the tap target is a fixed 44px box).
+  // Visible circle diameter by scale. The tap target stays a fixed 44px box
+  // around it, so these can stay small without hurting reachability.
+  const SCALE_SIZE = { HOUSEHOLD: 18, BLOCK: 21, NEIGHBORHOOD: 24, REGIONAL: 28 };
   const CENTER = [-73.9219, 40.6478];
+  const ROUTE_COLOR = { light: '#6844D3', dark: '#9076F7' };
 
-  if (!cfg.STYLE_URL) {
-    statusEl.textContent = 'web/config.js missing — copy web/config.example.js and fill in a style URL/token.';
+  let geodata = null, variants = [], currentVariant = null, currentVariantObj = null;
+  let markers = [], activeId = null;
+  let pinsVisible = true, routeVisible = false;
+  let styleReady = false, fellBack = false, didInitialFit = false;
+  let theme = 'light';
+
+  // ---------------- theme ----------------
+  function readStored(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function writeStored(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+
+  function fallbackForTheme(t) {
+    return t === 'dark'
+      ? (cfg.FALLBACK_STYLE_DARK || 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json')
+      : (cfg.FALLBACK_STYLE_LIGHT || 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json');
   }
-
-  maplibregl.accessToken = cfg.MAPBOX_TOKEN || '';
-
-  // MapLibre GL JS (unlike Mapbox GL JS) does not resolve the mapbox:// style
-  // protocol on its own — rewrite it to a plain HTTPS Styles API URL so a
-  // STYLE_URL copied straight from Mapbox Studio actually loads.
+  // MapLibre does not resolve the mapbox:// protocol — rewrite to the HTTPS Styles API.
   function resolveStyleUrl(url, token) {
-    if (url && url.indexOf('mapbox://styles/') === 0) {
-      const path = url.slice('mapbox://styles/'.length);
-      return 'https://api.mapbox.com/styles/v1/' + path + '?access_token=' + encodeURIComponent(token || '');
+    if (!url) return null;
+    if (url.indexOf('mapbox://styles/') === 0) {
+      return 'https://api.mapbox.com/styles/v1/' + url.slice('mapbox://styles/'.length) +
+             '?access_token=' + encodeURIComponent(token || '');
     }
     return url;
   }
 
+  // Load the theme's custom Mapbox style, sanitising the Mapbox-only bits
+  // MapLibre's validator rejects. The map is always constructed on the CARTO
+  // fallback first, so a style problem degrades instead of blanking the map.
+  function upgradeToCustomStyle(t) {
+    const resolved = resolveStyleUrl(t === 'dark' ? cfg.STYLE_URL_DARK : cfg.STYLE_URL_LIGHT,
+                                     cfg.MAPBOX_TOKEN);
+    if (!resolved) return;
+    const want = t;
+    fetch(resolved)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+      .then((style) => {
+        if (theme !== want) return;               // theme changed mid-flight
+        // Mapbox Standard (v3) keeps all cartography in `imports`, a Mapbox
+        // GL JS feature MapLibre does not implement — the style would render
+        // as an empty map. Re-author from a classic Studio template instead.
+        if (Array.isArray(style.imports) && style.imports.length) {
+          throw new Error('Mapbox Standard style: cartography lives in "imports", which ' +
+                          'MapLibre cannot render. Re-author from a classic Studio template.');
+        }
+        // Mapbox writes these as null; MapLibre requires an object or absence.
+        ['terrain', 'fog', 'sky'].forEach((k) => { if (style[k] === null) delete style[k]; });
+        if (!style.layers || !style.layers.length) {
+          throw new Error('style has no layers');
+        }
+        fellBack = false; styleReady = false;
+        map.setStyle(style);
+      })
+      .catch((err) => {
+        fellBack = true;
+        console.warn('[tour] custom ' + want + ' style unavailable, staying on the CARTO ' +
+                     'fallback: ' + err.message);
+        if (theme === want && geodata) {
+          el.status.textContent = 'CARTO fallback basemap · ' + stopCount() +
+                                  ' stops · ' + variants.length + ' routes';
+        }
+      });
+  }
+
+  function applyTheme(t, swapStyle) {
+    theme = t;
+    document.documentElement.setAttribute('data-theme', t);
+    el.theme.textContent = t === 'dark' ? '☼' : '☾';
+    el.theme.setAttribute('aria-label', t === 'dark' ? 'Switch to light map' : 'Switch to dark map');
+    writeStored('tour-theme', t);
+    if (swapStyle) {
+      fellBack = false; styleReady = false;
+      map.setStyle(fallbackForTheme(t));
+      upgradeToCustomStyle(t);
+    }
+  }
+  theme = readStored('tour-theme') === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+
+  function stopColor(props) {
+    return theme === 'dark' ? props.color : (props.color_light || props.color);
+  }
+
+  // ---------------- sidebar ----------------
+  function setCollapsed(c) {
+    el.sidebar.classList.toggle('collapsed', c);
+    el.reopen.hidden = !c || NARROW();
+    el.toggle.innerHTML = c ? '<span class="chev">&#8250;</span> Show tour stops'
+                            : '<span class="chev">&#8249;</span> Hide tour stops';
+  }
+  el.toggle.addEventListener('click', () => setCollapsed(!el.sidebar.classList.contains('collapsed')));
+  el.reopen.addEventListener('click', () => setCollapsed(false));
+  el.theme.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark', true));
+
+  // overview: expanded on desktop, collapsed on mobile
+  function setOverview(open) {
+    el.desc.hidden = !open;
+    el.ovToggle.setAttribute('aria-expanded', String(open));
+    el.ovToggle.querySelector('.caret').innerHTML = open ? '&#9652;' : '&#9662;';
+  }
+  el.ovToggle.addEventListener('click', () =>
+    setOverview(el.ovToggle.getAttribute('aria-expanded') !== 'true'));
+
+  // ---------------- map ----------------
+  // Construct on the token-free CARTO style so the map is never blank, then
+  // asynchronously upgrade to the custom Mapbox style if it is usable.
   const map = new maplibregl.Map({
     container: 'map',
-    style: resolveStyleUrl(cfg.STYLE_URL, cfg.MAPBOX_TOKEN),
-    center: CENTER,
-    zoom: 14.5,
-    minZoom: 12,
-    maxZoom: 19
+    style: fallbackForTheme(theme),
+    center: CENTER, zoom: 14.5, minZoom: 12, maxZoom: 19
   });
-
+  upgradeToCustomStyle(theme);
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
 
-  // --- Hard rule 0 fallback: never render a blank map ---
-  let fellBack = false;
-  let styleReady = false;
-
   map.on('error', (e) => {
-    if (fellBack) return;
-    if (map.isStyleLoaded()) return; // an error unrelated to the initial style load
+    if (fellBack || map.isStyleLoaded()) return;
     fellBack = true;
-    console.warn('[tour] STYLE_URL failed to load, falling back to FALLBACK_STYLE.', e && e.error);
-    statusEl.textContent = 'Primary style failed to load — using fallback basemap.';
-    map.setStyle(cfg.FALLBACK_STYLE);
+    console.warn('[tour] style failed to load, falling back.', e && e.error);
+    el.status.textContent = 'Primary style failed — using the CARTO fallback basemap.';
+    map.setStyle(fallbackForTheme(theme));
   });
 
-  // style.load fires for the initial style AND every subsequent setStyle
-  // call, so it's the one signal that reliably means "safe to add layers" —
-  // relying on the one-time 'load' event misses the fallback-recovery case.
-  map.on('style.load', () => {
-    styleReady = true;
-    tryInit();
-  });
+  map.on('style.load', () => { styleReady = true; tryInit(); });
 
   fetch('../data/tour.geojson')
-    .then((r) => {
-      if (!r.ok) throw new Error('tour.geojson HTTP ' + r.status);
-      return r.json();
-    })
+    .then((r) => { if (!r.ok) throw new Error('tour.geojson HTTP ' + r.status); return r.json(); })
     .then((data) => {
       geodata = data;
       variants = (data.metadata && data.metadata.route_variants) || [];
+      renderIntro();
+      renderLegend();
       buildVariantSwitcher();
+      applyTheme(theme, false);
+      setOverview(!NARROW());
+      if (NARROW()) setCollapsed(false);
       tryInit();
     })
     .catch((err) => {
       console.error('[tour] failed to load data/tour.geojson', err);
-      statusEl.textContent = 'Failed to load data/tour.geojson — see console.';
+      el.status.textContent = 'Failed to load data/tour.geojson — see console.';
     });
 
   function tryInit() {
     if (!styleReady || !geodata) return;
     addRouteLayers();
     currentVariant = currentVariant || (variants[0] && variants[0].id);
-    renderVariant(currentVariant, { fitBounds: true });
-    statusEl.textContent = fellBack
-      ? 'Fallback basemap in use — check STYLE_URL/token in web/config.js.'
-      : 'Loaded ' + geodata.features.filter(f => f.properties.kind === 'stop').length + ' stops.';
+    renderVariant(currentVariant, { fitBounds: !didInitialFit });
+    didInitialFit = true;
+    el.status.textContent = (fellBack ? 'CARTO fallback basemap · ' : '') +
+      stopCount() + ' stops · ' + variants.length + ' routes';
+  }
+  function stopCount() {
+    return geodata.features.filter((f) => f.properties.kind === 'stop').length;
   }
 
-  // ---------------------------------------------------------------
-  // Route line layers (source data swapped per variant)
-  // ---------------------------------------------------------------
-  function addRouteLayers() {
-    if (map.getSource('route-main')) return; // already added on this style
+  // ---------------- static copy from metadata ----------------
+  function renderIntro() {
+    const m = geodata.metadata || {};
+    el.kicker.textContent = m.edition || m.partners || '';
+    el.title.textContent = m.title || geodata.name || 'Walking Tour';
+    el.desc.innerHTML = '';
+    const paras = Array.isArray(m.description) ? m.description
+                : (m.description ? [m.description] : []);
+    paras.forEach((t) => {
+      const p = document.createElement('p');
+      p.textContent = t;
+      el.desc.appendChild(p);
+    });
+    el.credits.textContent = m.credits || '';
+  }
 
+  function renderLegend() {
+    const m = geodata.metadata || {};
+    el.legendNote.textContent = m.scale_note || '';
+    el.legendRows.innerHTML = '';
+    const groups = m.scale_groups || {};
+    ['HOUSEHOLD', 'BLOCK', 'NEIGHBORHOOD', 'REGIONAL'].forEach((k) => {
+      const g = groups[k];
+      if (!g) return;
+      const row = document.createElement('div');
+      row.className = 'legend-row';
+      const d = SCALE_SIZE[k] || 26;
+      const sw = document.createElement('span');
+      sw.className = 'legend-swatch';
+      sw.style.width = d + 'px';
+      sw.style.height = d + 'px';
+      sw.dataset.colorDark = g.color;
+      sw.dataset.colorLight = g.color_light || g.color;
+      const text = document.createElement('span');
+      const lab = document.createElement('div');
+      lab.className = 'legend-label';
+      lab.textContent = g.label || k;
+      const desc = document.createElement('div');
+      desc.className = 'legend-desc';
+      desc.textContent = g.description || '';
+      text.appendChild(lab); text.appendChild(desc);
+      row.appendChild(sw); row.appendChild(text);
+      el.legendRows.appendChild(row);
+    });
+    paintLegend();
+  }
+  function paintLegend() {
+    el.legendRows.querySelectorAll('.legend-swatch').forEach((sw) => {
+      sw.style.background = theme === 'dark' ? sw.dataset.colorDark : sw.dataset.colorLight;
+    });
+  }
+
+  // ---------------- route layers ----------------
+  function addRouteLayers() {
+    if (map.getSource('route-main')) return;
     map.addSource('route-main', { type: 'geojson', data: emptyFC() });
     map.addSource('route-spur', { type: 'geojson', data: emptyFC() });
-
-    map.addLayer({
-      id: 'route-main-line',
-      type: 'line',
-      source: 'route-main',
+    const color = ROUTE_COLOR[theme] || ROUTE_COLOR.light;
+    map.addLayer({ id: 'route-main-line', type: 'line', source: 'route-main',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': '#9076F7', 'line-width': 4 }
-    });
-
-    map.addLayer({
-      id: 'route-spur-line',
-      type: 'line',
-      source: 'route-spur',
+      paint: { 'line-color': color, 'line-width': 5 } });
+    map.addLayer({ id: 'route-spur-line', type: 'line', source: 'route-spur',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: {
-        'line-color': '#9076F7',
-        'line-width': 4,
-        'line-dasharray': [2, 1.5]
-      }
+      paint: { 'line-color': color, 'line-width': 5, 'line-dasharray': [2, 1.5] } });
+    setRouteVisibility();
+  }
+  function emptyFC() { return { type: 'FeatureCollection', features: [] }; }
+  function setRouteVisibility() {
+    ['route-main-line', 'route-spur-line'].forEach((id) => {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', routeVisible ? 'visible' : 'none');
     });
-
-    setLayerVisibility('route-main-line', routeVisible);
-    setLayerVisibility('route-spur-line', routeVisible);
   }
 
-  function emptyFC() {
-    return { type: 'FeatureCollection', features: [] };
-  }
-
-  function setLayerVisibility(id, visible) {
-    if (!map.getLayer(id)) return;
-    map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
-  }
-
-  // ---------------------------------------------------------------
-  // Variant switcher (built entirely from metadata.route_variants)
-  // ---------------------------------------------------------------
+  // ---------------- variant switcher ----------------
   function buildVariantSwitcher() {
-    const select = document.getElementById('variant-select');
-    select.innerHTML = '';
+    el.select.innerHTML = '';
     variants.forEach((v) => {
       const opt = document.createElement('option');
-      opt.value = v.id;
-      opt.textContent = v.name;
-      select.appendChild(opt);
+      opt.value = v.id; opt.textContent = v.name;
+      el.select.appendChild(opt);
     });
-    select.addEventListener('change', (e) => {
+    el.select.addEventListener('change', (e) => {
       currentVariant = e.target.value;
       renderVariant(currentVariant, { fitBounds: true });
     });
+  }
+
+  function byId(sid) {
+    return geodata.features.find((f) => f.properties.kind === 'stop' && f.properties.stop_id === sid);
+  }
+  function walkSequence(v) {
+    const seq = (v.order || []).slice();
+    (v.spur || []).forEach((id, i) => { if (i > 0) seq.push(id); });
+    return seq;
   }
 
   function renderVariant(variantId, opts) {
     if (!geodata) return;
     const variant = variants.find((v) => v.id === variantId);
     if (!variant) return;
+    currentVariantObj = variant;
+    el.select.value = variant.id;
 
     updateVariantMeta(variant);
+    updateRouteButton();
+    paintLegend();
 
     const routeFeatures = geodata.features.filter(
-      (f) => f.properties.kind === 'route' && f.properties.variant === variantId
-    );
-    const mainFeatures = routeFeatures.filter((f) => !f.properties.optional);
-    const spurFeatures = routeFeatures.filter((f) => f.properties.optional);
+      (f) => f.properties.kind === 'route' && f.properties.variant === variantId);
+    if (map.getSource('route-main'))
+      map.getSource('route-main').setData({ type: 'FeatureCollection',
+        features: routeFeatures.filter((f) => !f.properties.optional) });
+    if (map.getSource('route-spur'))
+      map.getSource('route-spur').setData({ type: 'FeatureCollection',
+        features: routeFeatures.filter((f) => f.properties.optional) });
 
-    if (map.getSource('route-main')) {
-      map.getSource('route-main').setData({ type: 'FeatureCollection', features: mainFeatures });
-    }
-    if (map.getSource('route-spur')) {
-      map.getSource('route-spur').setData({ type: 'FeatureCollection', features: spurFeatures });
-    }
-
-    const stopIds = new Set([...(variant.order || []), ...(variant.spur || [])]);
+    const seq = walkSequence(variant);
+    const seqSet = new Set(seq);
     const stopFeatures = geodata.features.filter(
-      (f) => f.properties.kind === 'stop' && stopIds.has(f.properties.stop_id)
-    );
-    renderPins(stopFeatures);
+      (f) => f.properties.kind === 'stop' && seqSet.has(f.properties.stop_id));
 
-    if (opts && opts.fitBounds) {
-      fitToFeatures([...routeFeatures, ...stopFeatures]);
-    }
+    // Pin/list numbers are the position along THIS variant's walk, not stop_id.
+    const posById = new Map(seq.map((sid, i) => [sid, i + 1]));
+    const mainOrder = variant.order || [];
+    const termini = { startId: mainOrder[0], endId: mainOrder[mainOrder.length - 1] };
+
+    renderPins(stopFeatures, posById, termini, seq);
+    renderStopList(variant, seq, posById, termini);
+
+    if (opts && opts.fitBounds) fitToFeatures([...routeFeatures, ...stopFeatures]);
   }
 
-  function updateVariantMeta(variant) {
-    const el = document.getElementById('variant-meta');
-    el.innerHTML =
-      '<span class="gather-end">' + escapeHtml(variant.gather) + ' &rarr; ' + escapeHtml(variant.end) + '</span><br>' +
-      '<strong>' + variant.walk_miles + ' mi</strong> &middot; <strong>' + variant.walk_minutes + ' min walk</strong>';
+  function updateVariantMeta(v) {
+    el.blurb.textContent = v.blurb || '';
+    const n = v.stop_count || (v.order || []).length;
+    let html = '<span class="gather-end">' + escapeHtml(v.gather) + ' &rarr; ' + escapeHtml(v.end) + '</span>' +
+      '<strong>' + n + ' stops</strong> &middot; ' +
+      '<strong>' + v.walk_miles + ' mi</strong> &middot; ~' + v.walk_minutes + ' min walking';
+    if (v.spur_miles) html += '<br>Includes an optional extension: +' + v.spur_miles + ' mi';
+    el.meta.innerHTML = html;
   }
+
+  function updateRouteButton() {
+    el.routeBtn.textContent = routeVisible ? 'Hide walking route' : 'Show walking route';
+    el.routeBtn.classList.toggle('is-on', routeVisible);
+    const v = currentVariantObj;
+    el.routeHint.textContent = !routeVisible ? 'Route hidden by default.'
+      : (v && v.routed === false) ? 'Straight-line placeholder — not yet snapped to sidewalks.'
+      : 'Drawn on the OpenStreetMap sidewalk network.';
+  }
+
+  el.routeBtn.addEventListener('click', () => {
+    routeVisible = !routeVisible; setRouteVisibility(); updateRouteButton();
+  });
+  el.pins.addEventListener('change', (e) => {
+    pinsVisible = e.target.checked;
+    markers.forEach((m) => { m.el.style.display = pinsVisible ? 'flex' : 'none'; });
+  });
 
   function fitToFeatures(features) {
     if (!features.length) return;
@@ -414,96 +859,220 @@
     features.forEach((f) => {
       const coords = f.geometry.type === 'Point' ? [f.geometry.coordinates] : f.geometry.coordinates;
       coords.forEach(([x, y]) => {
-        if (x < minX) minX = x;
-        if (y < minY) minY = y;
-        if (x > maxX) maxX = x;
-        if (y > maxY) maxY = y;
+        if (x < minX) minX = x; if (y < minY) minY = y;
+        if (x > maxX) maxX = x; if (y > maxY) maxY = y;
       });
     });
-    map.fitBounds([[minX, minY], [maxX, maxY]], { padding: 80, duration: 400 });
+    map.fitBounds([[minX, minY], [maxX, maxY]], { padding: fitPadding(), duration: 400 });
+  }
+  function fitPadding() {
+    const collapsed = el.sidebar.classList.contains('collapsed');
+    if (NARROW()) {
+      // bottom sheet covers the lower part of the map
+      return { top: 60, right: 40, bottom: collapsed ? 90 : Math.round(window.innerHeight * 0.64) + 20, left: 40 };
+    }
+    return { top: 56, right: 56, bottom: 56, left: collapsed ? 56 : SIDEBAR_W + 40 };
   }
 
-  // ---------------------------------------------------------------
-  // Pins
-  // ---------------------------------------------------------------
-  function renderPins(stopFeatures) {
+  // ---------------- popups ----------------
+  function closeAllPopups() {
+    markers.forEach((m) => { if (m.popup.isOpen()) m.popup.remove(); });
+  }
+
+  function mapsUrl(fromFeature, toFeature) {
+    const [flon, flat] = fromFeature.geometry.coordinates;
+    const t = toFeature || fromFeature;
+    const [tlon, tlat] = t.geometry.coordinates;
+    const base = 'https://www.google.com/maps/dir/?api=1&travelmode=walking';
+    return base + '&origin=' + flat + ',' + flon + '&destination=' + tlat + ',' + tlon;
+  }
+
+  function popupHtml(props, dirUrl, dirLabel) {
+    // Hard rule 2 / metadata.popup_fields: name, address, long — nothing else.
+    let h = '<div class="popup-name">' + escapeHtml(props.name) + '</div>' +
+            '<div class="popup-address">' + escapeHtml(props.address) + '</div>' +
+            '<div class="popup-long">' + escapeHtml(props.long) + '</div>';
+    if (dirUrl) {
+      h += '<a class="popup-dir" href="' + dirUrl + '" target="_blank" rel="noopener">' +
+           '➤ ' + escapeHtml(dirLabel) + '</a>';
+    }
+    return h;
+  }
+
+  // ---------------- pins ----------------
+  function renderPins(stopFeatures, posById, termini, seq) {
     markers.forEach((m) => m.marker.remove());
     markers = [];
-    activeMarkerEl = null;
+    activeId = null;
 
-    stopFeatures
-      .sort((a, b) => a.properties.stop_id - b.properties.stop_id)
+    const byPos = new Map(stopFeatures.map((f) => [f.properties.stop_id, f]));
+
+    stopFeatures.slice()
+      .sort((a, b) => posById.get(a.properties.stop_id) - posById.get(b.properties.stop_id))
       .forEach((feature) => {
         const props = feature.properties;
-        const diameter = SCALE_SIZE[props.scale] || 24;
-        const dashed = props.access === 'sidewalk';
+        const sid = props.stop_id;
+        const pos = posById.get(sid);
+        const dia = SCALE_SIZE[props.scale] || 26;
+        const isStart = sid === termini.startId;
+        const isEnd = sid === termini.endId;
 
-        const el = document.createElement('div');
-        el.className = 'pin' + (props.stop_id === 6 ? ' pin--anchor' : '');
-        el.style.width = diameter + 'px';
-        el.style.height = diameter + 'px';
-        el.style.fontSize = Math.max(10, Math.round(diameter * 0.42)) + 'px';
-        el.style.background = props.color;
-        el.style.border = (dashed ? '2px dashed ' : '2px solid ') + '#FDFDFD';
-        el.textContent = props.stop_id;
-        el.style.display = pinsVisible ? 'flex' : 'none';
+        // 44x44 transparent tap target; visible circle sized by scale inside it.
+        const pinEl = document.createElement('div');
+        pinEl.className = 'pin';
+        pinEl.style.display = pinsVisible ? 'flex' : 'none';
+        if (isStart || isEnd) pinEl.style.zIndex = '10';
 
-        const popup = new maplibregl.Popup({ offset: diameter / 2 + 6, closeButton: true })
-          .setHTML(popupHtml(props));
+        if (isStart || isEnd) {
+          const flag = document.createElement('span');
+          flag.className = 'pin-flag ' + (isStart ? 'pin-flag--start' : 'pin-flag--end');
+          flag.textContent = isStart ? '⚑ Start' : '⚑ Finish';
+          pinEl.appendChild(flag);
+        }
 
-        const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
+        const dot = document.createElement('span');
+        dot.className = 'pin-dot';
+        dot.style.width = dia + 'px';
+        dot.style.height = dia + 'px';
+        // Two-digit numerals need a smaller face to stay inside the circle.
+        dot.style.fontSize = Math.round(dia * (String(pos).length > 1 ? 0.42 : 0.52)) + 'px';
+        dot.style.background = stopColor(props);
+        dot.style.border = (props.access === 'sidewalk' ? '1.5px dashed ' : '1.5px solid ') +
+                           (theme === 'dark' ? '#FDFDFD' : '#FFFFFF');
+        dot.textContent = pos;
+        pinEl.appendChild(dot);
+
+        // next stop in the walk, for the Directions link
+        const idx = seq.indexOf(sid);
+        const nextFeature = idx >= 0 && idx < seq.length - 1 ? byPos.get(seq[idx + 1]) : null;
+        const dirLabel = nextFeature
+          ? 'Walk to ' + nextFeature.properties.name
+          : 'Open in Maps';
+
+        // focusAfterOpen would pull focus to the last focusable child (the
+        // Directions link), which scrolls the capped popup body to the bottom.
+        const popup = new maplibregl.Popup({ offset: dia / 2 + 10, closeButton: true,
+                                             closeOnClick: true, focusAfterOpen: false })
           .setLngLat(feature.geometry.coordinates)
-          .setPopup(popup)
+          .setHTML(popupHtml(props, mapsUrl(feature, nextFeature), dirLabel));
+
+        const marker = new maplibregl.Marker({ element: pinEl, anchor: 'center' })
+          .setLngLat(feature.geometry.coordinates)
           .addTo(map);
 
-        el.addEventListener('click', () => setActive(el));
-        popup.on('close', () => {
-          if (el === activeMarkerEl) clearActive();
+        pinEl.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          openStop(sid, { fly: false });
+          scrollListTo(sid);
         });
+        popup.on('close', () => { if (activeId === sid) setActive(null); });
 
-        markers.push({ id: props.stop_id, marker, el });
+        markers.push({ id: sid, marker, el: pinEl, popup, listEl: null });
       });
   }
 
-  function popupHtml(props) {
-    // Hard rule 2 / metadata.popup_fields: name, address, long — nothing else.
-    return (
-      '<div class="popup-name">' + escapeHtml(props.name) + '</div>' +
-      '<div class="popup-address">' + escapeHtml(props.address) + '</div>' +
-      '<div class="popup-long">' + escapeHtml(props.long) + '</div>'
-    );
+  // ---------------- stop list ----------------
+  function renderStopList(variant, seq, posById, termini) {
+    el.list.innerHTML = '';
+    const orderSet = new Set(variant.order || []);
+
+    seq.forEach((sid) => {
+      const feature = byId(sid);
+      if (!feature) return;
+      const props = feature.properties;
+
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'stop-item';
+      item.dataset.id = String(sid);
+
+      const badge = document.createElement('span');
+      badge.className = 'stop-badge' + (props.access === 'sidewalk' ? ' sidewalk' : '');
+      badge.style.background = stopColor(props);
+      badge.textContent = posById.get(sid);
+
+      const text = document.createElement('span');
+      text.className = 'stop-text';
+      const name = document.createElement('span');
+      name.className = 'stop-name';
+      name.textContent = props.name;
+      if (sid === termini.startId || sid === termini.endId) {
+        const tag = document.createElement('span');
+        tag.className = 'flagtag ' + (sid === termini.startId ? 'flagtag--start' : 'flagtag--end');
+        tag.textContent = sid === termini.startId ? 'Start' : 'Finish';
+        name.appendChild(tag);
+      }
+      if (!orderSet.has(sid)) {
+        const opt = document.createElement('span');
+        opt.className = 'opt';
+        opt.textContent = '  · optional';
+        name.appendChild(opt);
+      }
+      const short = document.createElement('span');
+      short.className = 'stop-short';
+      short.textContent = props.short || '';
+      text.appendChild(name); text.appendChild(short);
+
+      item.appendChild(badge); item.appendChild(text);
+      item.addEventListener('click', () => openStop(sid, { fly: true }));
+      el.list.appendChild(item);
+
+      const mk = markers.find((m) => m.id === sid);
+      if (mk) mk.listEl = item;
+    });
+
+    if (activeId != null) setActive(activeId);
   }
 
-  function setActive(el) {
-    clearActive();
-    el.classList.add('pin--active');
-    activeMarkerEl = el;
+  function openStop(sid, opts) {
+    const mk = markers.find((m) => m.id === sid);
+    if (!mk) return;
+    closeAllPopups();          // only one popup open at a time
+    setActive(sid);
+
+    // Seat the pin in the upper part of the map so the popup — capped at
+    // 45dvh — has room to open below it instead of running off-screen.
+    const offX = (NARROW() || el.sidebar.classList.contains('collapsed')) ? 0 : SIDEBAR_W / 2;
+    const offY = NARROW() ? -Math.round(window.innerHeight * 0.26) : -Math.round(window.innerHeight * 0.16);
+    const cam = { center: mk.marker.getLngLat(), offset: [offX, offY] };
+
+    if (opts && opts.fly) {
+      if (NARROW()) setCollapsed(true);
+      cam.zoom = Math.max(map.getZoom(), 15.5);
+      cam.duration = 650;
+      map.flyTo(cam);
+    } else {
+      cam.duration = 350;
+      map.easeTo(cam);
+    }
+    mk.popup.addTo(map);
+    // Always open reading from the top, never scrolled to the end.
+    const body = mk.popup.getElement() &&
+                 mk.popup.getElement().querySelector('.maplibregl-popup-content');
+    if (body) { body.scrollTop = 0; requestAnimationFrame(() => { body.scrollTop = 0; }); }
   }
 
-  function clearActive() {
-    if (activeMarkerEl) activeMarkerEl.classList.remove('pin--active');
-    activeMarkerEl = null;
+  function scrollListTo(sid) {
+    const mk = markers.find((m) => m.id === sid);
+    if (mk && mk.listEl) mk.listEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function setActive(sid) {
+    activeId = sid;
+    markers.forEach((m) => {
+      const on = m.id === sid;
+      m.el.classList.toggle('pin--active', on);
+      if (m.listEl) m.listEl.classList.toggle('active', on);
+    });
   }
 
   function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str == null ? '' : String(str);
-    return div.innerHTML;
+    const d = document.createElement('div');
+    d.textContent = str == null ? '' : String(str);
+    return d.innerHTML;
   }
 
-  // ---------------------------------------------------------------
-  // Layer toggles
-  // ---------------------------------------------------------------
-  document.getElementById('toggle-route').addEventListener('change', (e) => {
-    routeVisible = e.target.checked;
-    setLayerVisibility('route-main-line', routeVisible);
-    setLayerVisibility('route-spur-line', routeVisible);
-  });
-
-  document.getElementById('toggle-pins').addEventListener('change', (e) => {
-    pinsVisible = e.target.checked;
-    markers.forEach((m) => { m.el.style.display = pinsVisible ? 'flex' : 'none'; });
-  });
+  window.addEventListener('resize', () => { el.reopen.hidden = !el.sidebar.classList.contains('collapsed') || NARROW(); });
 })();
 </script>
 </body>
