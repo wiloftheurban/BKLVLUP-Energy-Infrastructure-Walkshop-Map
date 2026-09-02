@@ -6,7 +6,7 @@ Energy Resilience Edition*.
 
 Produced by [GROUND3D](https://ground3d.com) with BKLVLUP.
 
-Eleven stops. Five route variants. Two deliverables from one dataset: a printed
+Eleven stops. F3 variants. Two deliverables from one dataset: a printed
 5×7 postcard map and a public interactive web map.
 
 ## Structure
