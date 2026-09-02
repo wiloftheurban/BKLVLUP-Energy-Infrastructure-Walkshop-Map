@@ -1,0 +1,1995 @@
+{
+  "type": "FeatureCollection",
+  "name": "BKLVLUP Ecopower Infrastructure Walk",
+  "metadata": {
+    "version": "v4",
+    "title": "Ecopower Infrastructure Walk",
+    "edition": "The Green Book — Energy Resilience Edition",
+    "partners": "BKLVLUP × GROUND3D",
+    "neighborhood": "East Flatbush / Remsen Village / Canarsie, Brooklyn",
+    "description": [
+      "BKLVLUP is a community development + social impact lab nonprofit that uses art and technology to build lasting community wealth in East Flatbush, Flatbush, and Flatlands, Brooklyn.",
+      "This map supports our Energy Infrastructure Walking Tour: eleven stops across East Flatbush, Remsen Village, and Canarsie. It's built for self-guided walking, with turn-by-turn directions along the route, so you can take it at your own pace, alone or with your block.",
+      "Energy infrastructure runs all throughout this neighborhood, mostly out of sight. This tour makes it visible: the $1.3 billion substation going up on the Canarsie rail line, the gas campus on Ditmas, the library that operates as a cooling center during heat emergencies, the grocer's coolers that never shut off, and a house on East 53rd that ran on solar before anyone called it clean energy. Along the way we connect residents' daily experiences with energy, from utility bills to power outages to the summers that keep getting hotter, back to the systems behind them.",
+      "New York State is planning the Interborough Express, a light rail along an existing freight line connecting Brooklyn to Queens, with three stations planned in our area including one on Utica Avenue. Transit like that brings investment and pressure at the same time. We're preparing to meet it on purpose by using transit-oriented development to build community-owned energy resilient infrastructure, while the community is still ours to shape."
+    ],
+    "credits": "Produced by GROUND3D in collaboration with the BKLVLUP EcoPower '26 Summer Fellows. Map authored by GROUND3D. Route drawn on the OpenStreetMap sidewalk network.",
+    "center": [
+      -73.9219,
+      40.6478
+    ],
+    "popup_fields": [
+      "name",
+      "address",
+      "long"
+    ],
+    "popup_note": "INTERACTIVE MAP POPUPS RENDER ONLY name, address AND long. The energy_connection, conversation and resource fields are facilitator material for the printed Green Book and the walkshop script — do NOT render them in map popups.",
+    "static_map_note": "Static map shows NUMBERED PINS ONLY. No inline labels. Names go in a legend strip keyed to stop_id, using the short field.",
+    "color_note": "Pin fill from properties.color on a dark basemap, properties.color_light on a light one. Pin outline encodes access. See CLAUDE.md > Brand.",
+    "scale_note": "Every stop is colored by where it sits in the energy system, and sized to match: smallest for a single home, largest for the utilities.",
+    "scale_groups": {
+      "HOUSEHOLD": {
+        "label": "Household",
+        "description": "A single home. The Johnson Energy Clinic and the Wyckoff House.",
+        "color": "#4FD8E8",
+        "color_light": "#0E7C8C"
+      },
+      "BLOCK": {
+        "label": "Block + small business",
+        "description": "Where energy shows up as a bill. The wholesale grocer, the event space, the restaurant kitchen.",
+        "color": "#D85390",
+        "color_light": "#D51470"
+      },
+      "NEIGHBORHOOD": {
+        "label": "Neighborhood",
+        "description": "What we hold in common. The library, the playground, the nonprofit, and a vacant lot on Utica.",
+        "color": "#6CDF67",
+        "color_light": "#118026"
+      },
+      "REGIONAL": {
+        "label": "Regional",
+        "description": "Systems built at a scale no single block decides. Con Edison's electricity, National Grid's gas.",
+        "color": "#9076F7",
+        "color_light": "#6844D3"
+      }
+    },
+    "access_values": {
+      "open": "open to anyone",
+      "visitor": "open as a visitor",
+      "customer": "open as a customer",
+      "booking": "open by booking",
+      "appointment": "open by appointment",
+      "sidewalk": "view from the sidewalk only"
+    },
+    "route_variants": [
+      {
+        "id": "full",
+        "name": "The Full Walk",
+        "gather": "De Event Room",
+        "end": "Brooklyn Public Library, Rugby Branch",
+        "order": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          5,
+          4,
+          3,
+          1
+        ],
+        "spur": [
+          1,
+          2
+        ],
+        "routed": true,
+        "walk_miles": 2.35,
+        "walk_minutes": 50,
+        "spur_miles": 0.11,
+        "stop_count": 11,
+        "blurb": "This route is the longest and most comprehensive, featuring all 11 stops. Gather at De Event Room, head east through the playground, the substation, and the gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
+        "rationale": "Private business hosts the reception, supporting a local operator. Opens on infrastructure while energy is high, closes on the Utica community cluster, and lands at the library where there is room to sit and debrief. The vacant lot is the optional last word."
+      },
+      {
+        "id": "utica",
+        "name": "Utica Walkshop",
+        "gather": "Rugby Library",
+        "end": "Johnson Energy Clinic",
+        "order": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "spur": [],
+        "routed": true,
+        "walk_miles": 0.56,
+        "walk_minutes": 12,
+        "spur_miles": null,
+        "stop_count": 5,
+        "blurb": "The social infrastructure half. This route covers a few sites of social infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush Village, Chef's Choice, and one of New York City's earliest solar homes. Short enough for a lunch hour, a school group, or a walk with elders.",
+        "rationale": "Short community-scale tour. Accessible length; can run in a lunch hour."
+      },
+      {
+        "id": "ditmas",
+        "name": "Ditmas Walkshop",
+        "gather": "De Event Room",
+        "end": "Wyckoff House Museum",
+        "order": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "spur": [
+          10,
+          11
+        ],
+        "routed": true,
+        "walk_miles": 1.33,
+        "walk_minutes": 29,
+        "spur_miles": 0.07,
+        "stop_count": 6,
+        "blurb": "The built infrastructure half. It begins at De Event Room as a gathering space, and continues on to Railroad Playground, the Con Edison substation, and National Grid, ending at the Wyckoff House Museum, with an optional extension to grab a meal at Footprints. Pairs with the Utica Walkshop to cover all eleven stops across two sessions.",
+        "rationale": "Infrastructure and utilities tour. Pairs with the Utica Walkshop as a two-session series."
+      }
+    ],
+    "note": "Route LineStrings follow the OSM pedestrian network (OSRM foot profile); walk_miles and walk_minutes are the routed distance and time. Verify against a site walk before publishing."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.918697,
+            40.651372
+          ],
+          [
+            -73.918608,
+            40.65143
+          ],
+          [
+            -73.918311,
+            40.651168
+          ],
+          [
+            -73.918289,
+            40.651183
+          ],
+          [
+            -73.918219,
+            40.651231
+          ],
+          [
+            -73.91815,
+            40.651279
+          ],
+          [
+            -73.918123,
+            40.651296
+          ],
+          [
+            -73.918099,
+            40.651276
+          ],
+          [
+            -73.918036,
+            40.651223
+          ],
+          [
+            -73.917997,
+            40.65119
+          ],
+          [
+            -73.917978,
+            40.651172
+          ],
+          [
+            -73.917366,
+            40.651562
+          ],
+          [
+            -73.917354,
+            40.651571
+          ],
+          [
+            -73.917308,
+            40.651599
+          ],
+          [
+            -73.917261,
+            40.651627
+          ],
+          [
+            -73.917247,
+            40.651636
+          ],
+          [
+            -73.917086,
+            40.651485
+          ],
+          [
+            -73.915574,
+            40.65013
+          ],
+          [
+            -73.914967,
+            40.650513
+          ],
+          [
+            -73.914965,
+            40.650497
+          ],
+          [
+            -73.914903,
+            40.65044
+          ],
+          [
+            -73.914861,
+            40.6504
+          ],
+          [
+            -73.914835,
+            40.650394
+          ],
+          [
+            -73.913931,
+            40.649582
+          ],
+          [
+            -73.913393,
+            40.649098
+          ],
+          [
+            -73.91338,
+            40.649074
+          ],
+          [
+            -73.913321,
+            40.649017
+          ],
+          [
+            -73.913279,
+            40.648977
+          ],
+          [
+            -73.913253,
+            40.648955
+          ],
+          [
+            -73.913829,
+            40.648586
+          ],
+          [
+            -73.91358,
+            40.64836
+          ],
+          [
+            -73.91358,
+            40.64836
+          ],
+          [
+            -73.913829,
+            40.648586
+          ],
+          [
+            -73.913862,
+            40.648575
+          ],
+          [
+            -73.913902,
+            40.648548
+          ],
+          [
+            -73.913946,
+            40.648517
+          ],
+          [
+            -73.913964,
+            40.648497
+          ],
+          [
+            -73.91457,
+            40.648108
+          ],
+          [
+            -73.914596,
+            40.648088
+          ],
+          [
+            -73.914667,
+            40.648043
+          ],
+          [
+            -73.914739,
+            40.647996
+          ],
+          [
+            -73.914773,
+            40.647974
+          ],
+          [
+            -73.914816,
+            40.647946
+          ],
+          [
+            -73.914957,
+            40.647856
+          ],
+          [
+            -73.915375,
+            40.647589
+          ],
+          [
+            -73.915392,
+            40.647571
+          ],
+          [
+            -73.915432,
+            40.647544
+          ],
+          [
+            -73.915475,
+            40.647515
+          ],
+          [
+            -73.915506,
+            40.647507
+          ],
+          [
+            -73.916092,
+            40.647128
+          ],
+          [
+            -73.916102,
+            40.647122
+          ],
+          [
+            -73.916145,
+            40.647094
+          ],
+          [
+            -73.916196,
+            40.647059
+          ],
+          [
+            -73.916214,
+            40.647047
+          ],
+          [
+            -73.916557,
+            40.646824
+          ],
+          [
+            -73.916794,
+            40.646669
+          ],
+          [
+            -73.91681,
+            40.646658
+          ],
+          [
+            -73.916867,
+            40.646622
+          ],
+          [
+            -73.916922,
+            40.646586
+          ],
+          [
+            -73.916938,
+            40.646574
+          ],
+          [
+            -73.917617,
+            40.646136
+          ],
+          [
+            -73.919715,
+            40.644779
+          ],
+          [
+            -73.91932,
+            40.644423
+          ],
+          [
+            -73.919012,
+            40.644618
+          ],
+          [
+            -73.91895,
+            40.644657
+          ],
+          [
+            -73.918841,
+            40.644727
+          ],
+          [
+            -73.918199,
+            40.645152
+          ],
+          [
+            -73.918176,
+            40.645166
+          ],
+          [
+            -73.918123,
+            40.6453
+          ],
+          [
+            -73.917813,
+            40.645493
+          ],
+          [
+            -73.917913,
+            40.645578
+          ],
+          [
+            -73.918004,
+            40.645655
+          ],
+          [
+            -73.917913,
+            40.645578
+          ],
+          [
+            -73.917813,
+            40.645493
+          ],
+          [
+            -73.918123,
+            40.6453
+          ],
+          [
+            -73.918176,
+            40.645166
+          ],
+          [
+            -73.918199,
+            40.645152
+          ],
+          [
+            -73.918841,
+            40.644727
+          ],
+          [
+            -73.91895,
+            40.644657
+          ],
+          [
+            -73.919012,
+            40.644618
+          ],
+          [
+            -73.91932,
+            40.644423
+          ],
+          [
+            -73.919715,
+            40.644779
+          ],
+          [
+            -73.919732,
+            40.644795
+          ],
+          [
+            -73.919762,
+            40.644819
+          ],
+          [
+            -73.919793,
+            40.644844
+          ],
+          [
+            -73.919835,
+            40.644854
+          ],
+          [
+            -73.919826,
+            40.644924
+          ],
+          [
+            -73.919864,
+            40.644923
+          ],
+          [
+            -73.919967,
+            40.644917
+          ],
+          [
+            -73.920072,
+            40.644911
+          ],
+          [
+            -73.920114,
+            40.644909
+          ],
+          [
+            -73.920862,
+            40.644878
+          ],
+          [
+            -73.920844,
+            40.644641
+          ],
+          [
+            -73.920837,
+            40.64461
+          ],
+          [
+            -73.920644,
+            40.644484
+          ],
+          [
+            -73.920696,
+            40.64441
+          ],
+          [
+            -73.920792,
+            40.644446
+          ],
+          [
+            -73.920814,
+            40.644405
+          ],
+          [
+            -73.920814,
+            40.644405
+          ],
+          [
+            -73.920792,
+            40.644446
+          ],
+          [
+            -73.920696,
+            40.64441
+          ],
+          [
+            -73.920644,
+            40.644484
+          ],
+          [
+            -73.920837,
+            40.64461
+          ],
+          [
+            -73.920844,
+            40.644641
+          ],
+          [
+            -73.920862,
+            40.644878
+          ],
+          [
+            -73.921327,
+            40.644847
+          ],
+          [
+            -73.921472,
+            40.644838
+          ],
+          [
+            -73.921825,
+            40.644815
+          ],
+          [
+            -73.92185,
+            40.644813
+          ],
+          [
+            -73.921898,
+            40.644808
+          ],
+          [
+            -73.921972,
+            40.644803
+          ],
+          [
+            -73.922003,
+            40.64481
+          ],
+          [
+            -73.922121,
+            40.644803
+          ],
+          [
+            -73.922605,
+            40.644773
+          ],
+          [
+            -73.922761,
+            40.644764
+          ],
+          [
+            -73.922754,
+            40.644779
+          ],
+          [
+            -73.922765,
+            40.644867
+          ],
+          [
+            -73.922771,
+            40.644951
+          ],
+          [
+            -73.922786,
+            40.644966
+          ],
+          [
+            -73.922806,
+            40.644966
+          ],
+          [
+            -73.922858,
+            40.644962
+          ],
+          [
+            -73.922927,
+            40.644959
+          ],
+          [
+            -73.922942,
+            40.644958
+          ],
+          [
+            -73.923727,
+            40.644914
+          ],
+          [
+            -73.923752,
+            40.644915
+          ],
+          [
+            -73.92383,
+            40.644924
+          ],
+          [
+            -73.923929,
+            40.644935
+          ],
+          [
+            -73.923942,
+            40.644938
+          ],
+          [
+            -73.923939,
+            40.644951
+          ],
+          [
+            -73.923938,
+            40.644963
+          ],
+          [
+            -73.923938,
+            40.644986
+          ],
+          [
+            -73.924115,
+            40.646578
+          ],
+          [
+            -73.924124,
+            40.646598
+          ],
+          [
+            -73.924189,
+            40.646594
+          ],
+          [
+            -73.92435,
+            40.646589
+          ],
+          [
+            -73.924366,
+            40.646589
+          ],
+          [
+            -73.924387,
+            40.646588
+          ],
+          [
+            -73.924416,
+            40.646583
+          ],
+          [
+            -73.924451,
+            40.646581
+          ],
+          [
+            -73.924613,
+            40.646569
+          ],
+          [
+            -73.924772,
+            40.646556
+          ],
+          [
+            -73.924822,
+            40.646555
+          ],
+          [
+            -73.924838,
+            40.646555
+          ],
+          [
+            -73.924904,
+            40.646548
+          ],
+          [
+            -73.924933,
+            40.646546
+          ],
+          [
+            -73.924978,
+            40.646544
+          ],
+          [
+            -73.925046,
+            40.646542
+          ],
+          [
+            -73.925073,
+            40.646544
+          ],
+          [
+            -73.925107,
+            40.646541
+          ],
+          [
+            -73.925163,
+            40.646538
+          ],
+          [
+            -73.925818,
+            40.646498
+          ],
+          [
+            -73.925833,
+            40.646497
+          ],
+          [
+            -73.925847,
+            40.646495
+          ],
+          [
+            -73.925839,
+            40.64651
+          ],
+          [
+            -73.925847,
+            40.646576
+          ],
+          [
+            -73.925854,
+            40.646636
+          ],
+          [
+            -73.925865,
+            40.64665
+          ],
+          [
+            -73.925882,
+            40.646652
+          ],
+          [
+            -73.925932,
+            40.646649
+          ],
+          [
+            -73.926,
+            40.646646
+          ],
+          [
+            -73.926013,
+            40.646642
+          ],
+          [
+            -73.926011,
+            40.64665
+          ],
+          [
+            -73.926009,
+            40.646664
+          ],
+          [
+            -73.926204,
+            40.648344
+          ],
+          [
+            -73.926982,
+            40.648296
+          ],
+          [
+            -73.927009,
+            40.648295
+          ],
+          [
+            -73.927083,
+            40.64829
+          ],
+          [
+            -73.927178,
+            40.648283
+          ],
+          [
+            -73.927197,
+            40.648286
+          ],
+          [
+            -73.927205,
+            40.648301
+          ],
+          [
+            -73.927212,
+            40.648362
+          ],
+          [
+            -73.927219,
+            40.648425
+          ],
+          [
+            -73.927211,
+            40.64844
+          ],
+          [
+            -73.927281,
+            40.649106
+          ],
+          [
+            -73.927211,
+            40.64844
+          ],
+          [
+            -73.927988,
+            40.648394
+          ],
+          [
+            -73.928022,
+            40.648392
+          ],
+          [
+            -73.92807,
+            40.64839
+          ],
+          [
+            -73.928138,
+            40.648386
+          ],
+          [
+            -73.928158,
+            40.648385
+          ],
+          [
+            -73.928935,
+            40.648329
+          ],
+          [
+            -73.928953,
+            40.648336
+          ],
+          [
+            -73.929003,
+            40.648332
+          ],
+          [
+            -73.929069,
+            40.648329
+          ],
+          [
+            -73.929092,
+            40.648323
+          ],
+          [
+            -73.929091,
+            40.648312
+          ],
+          [
+            -73.929082,
+            40.648245
+          ],
+          [
+            -73.929074,
+            40.648185
+          ],
+          [
+            -73.929073,
+            40.648174
+          ],
+          [
+            -73.929846,
+            40.648116
+          ],
+          [
+            -73.929837,
+            40.648036
+          ],
+          [
+            -73.929824,
+            40.647898
+          ],
+          [
+            -73.929796,
+            40.64762
+          ],
+          [
+            -73.929824,
+            40.647898
+          ],
+          [
+            -73.929837,
+            40.648036
+          ],
+          [
+            -73.929846,
+            40.648116
+          ],
+          [
+            -73.929848,
+            40.648136
+          ],
+          [
+            -73.929857,
+            40.6482
+          ],
+          [
+            -73.929865,
+            40.648257
+          ],
+          [
+            -73.929868,
+            40.648281
+          ],
+          [
+            -73.929681,
+            40.648291
+          ],
+          [
+            -73.929868,
+            40.648281
+          ],
+          [
+            -73.929899,
+            40.648279
+          ],
+          [
+            -73.930009,
+            40.648274
+          ],
+          [
+            -73.930137,
+            40.648268
+          ],
+          [
+            -73.930169,
+            40.648266
+          ],
+          [
+            -73.930211,
+            40.648667
+          ],
+          [
+            -73.93038,
+            40.648657
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "route",
+        "variant": "full",
+        "segment": "main",
+        "label": "The Full Walk",
+        "optional": false,
+        "stop_order": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          5,
+          4,
+          3,
+          1
+        ],
+        "routed": true,
+        "walk_miles": 2.35,
+        "walk_minutes": 50,
+        "note": "Geometry follows the OSM pedestrian network (OSRM foot profile)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.93038,
+            40.648657
+          ],
+          [
+            -73.930211,
+            40.648667
+          ],
+          [
+            -73.930353,
+            40.650026
+          ],
+          [
+            -73.930646,
+            40.650008
+          ],
+          [
+            -73.930627,
+            40.649825
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "route",
+        "variant": "full",
+        "segment": "spur",
+        "label": "The Full Walk (optional extension)",
+        "optional": true,
+        "stop_order": [
+          1,
+          2
+        ],
+        "routed": true,
+        "walk_miles": 0.11,
+        "note": "Render dashed. Geometry follows the OSM pedestrian network (OSRM foot profile)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.93038,
+            40.648657
+          ],
+          [
+            -73.930211,
+            40.648667
+          ],
+          [
+            -73.930353,
+            40.650026
+          ],
+          [
+            -73.930646,
+            40.650008
+          ],
+          [
+            -73.930353,
+            40.650026
+          ],
+          [
+            -73.930329,
+            40.650027
+          ],
+          [
+            -73.930201,
+            40.650033
+          ],
+          [
+            -73.930089,
+            40.650039
+          ],
+          [
+            -73.930069,
+            40.65004
+          ],
+          [
+            -73.929868,
+            40.648281
+          ],
+          [
+            -73.929681,
+            40.648291
+          ],
+          [
+            -73.929868,
+            40.648281
+          ],
+          [
+            -73.929865,
+            40.648257
+          ],
+          [
+            -73.929857,
+            40.6482
+          ],
+          [
+            -73.929848,
+            40.648136
+          ],
+          [
+            -73.929846,
+            40.648116
+          ],
+          [
+            -73.929837,
+            40.648036
+          ],
+          [
+            -73.929824,
+            40.647898
+          ],
+          [
+            -73.929796,
+            40.64762
+          ],
+          [
+            -73.929824,
+            40.647898
+          ],
+          [
+            -73.929837,
+            40.648036
+          ],
+          [
+            -73.929846,
+            40.648116
+          ],
+          [
+            -73.929073,
+            40.648174
+          ],
+          [
+            -73.929074,
+            40.648185
+          ],
+          [
+            -73.929082,
+            40.648245
+          ],
+          [
+            -73.929091,
+            40.648312
+          ],
+          [
+            -73.929092,
+            40.648323
+          ],
+          [
+            -73.929069,
+            40.648329
+          ],
+          [
+            -73.929003,
+            40.648332
+          ],
+          [
+            -73.928953,
+            40.648336
+          ],
+          [
+            -73.928935,
+            40.648329
+          ],
+          [
+            -73.928158,
+            40.648385
+          ],
+          [
+            -73.928138,
+            40.648386
+          ],
+          [
+            -73.92807,
+            40.64839
+          ],
+          [
+            -73.928022,
+            40.648392
+          ],
+          [
+            -73.927988,
+            40.648394
+          ],
+          [
+            -73.927211,
+            40.64844
+          ],
+          [
+            -73.927281,
+            40.649106
+          ],
+          [
+            -73.927457,
+            40.649095
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "route",
+        "variant": "utica",
+        "segment": "main",
+        "label": "Utica Walkshop",
+        "optional": false,
+        "stop_order": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "routed": true,
+        "walk_miles": 0.56,
+        "walk_minutes": 12,
+        "note": "Geometry follows the OSM pedestrian network (OSRM foot profile)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.918697,
+            40.651372
+          ],
+          [
+            -73.918608,
+            40.65143
+          ],
+          [
+            -73.918311,
+            40.651168
+          ],
+          [
+            -73.918289,
+            40.651183
+          ],
+          [
+            -73.918219,
+            40.651231
+          ],
+          [
+            -73.91815,
+            40.651279
+          ],
+          [
+            -73.918123,
+            40.651296
+          ],
+          [
+            -73.918099,
+            40.651276
+          ],
+          [
+            -73.918036,
+            40.651223
+          ],
+          [
+            -73.917997,
+            40.65119
+          ],
+          [
+            -73.917978,
+            40.651172
+          ],
+          [
+            -73.917366,
+            40.651562
+          ],
+          [
+            -73.917354,
+            40.651571
+          ],
+          [
+            -73.917308,
+            40.651599
+          ],
+          [
+            -73.917261,
+            40.651627
+          ],
+          [
+            -73.917247,
+            40.651636
+          ],
+          [
+            -73.917086,
+            40.651485
+          ],
+          [
+            -73.915574,
+            40.65013
+          ],
+          [
+            -73.914967,
+            40.650513
+          ],
+          [
+            -73.914965,
+            40.650497
+          ],
+          [
+            -73.914903,
+            40.65044
+          ],
+          [
+            -73.914861,
+            40.6504
+          ],
+          [
+            -73.914835,
+            40.650394
+          ],
+          [
+            -73.913931,
+            40.649582
+          ],
+          [
+            -73.913393,
+            40.649098
+          ],
+          [
+            -73.91338,
+            40.649074
+          ],
+          [
+            -73.913321,
+            40.649017
+          ],
+          [
+            -73.913279,
+            40.648977
+          ],
+          [
+            -73.913253,
+            40.648955
+          ],
+          [
+            -73.913829,
+            40.648586
+          ],
+          [
+            -73.91358,
+            40.64836
+          ],
+          [
+            -73.91358,
+            40.64836
+          ],
+          [
+            -73.913829,
+            40.648586
+          ],
+          [
+            -73.913862,
+            40.648575
+          ],
+          [
+            -73.913902,
+            40.648548
+          ],
+          [
+            -73.913946,
+            40.648517
+          ],
+          [
+            -73.913964,
+            40.648497
+          ],
+          [
+            -73.91457,
+            40.648108
+          ],
+          [
+            -73.914596,
+            40.648088
+          ],
+          [
+            -73.914667,
+            40.648043
+          ],
+          [
+            -73.914739,
+            40.647996
+          ],
+          [
+            -73.914773,
+            40.647974
+          ],
+          [
+            -73.914816,
+            40.647946
+          ],
+          [
+            -73.914957,
+            40.647856
+          ],
+          [
+            -73.915375,
+            40.647589
+          ],
+          [
+            -73.915392,
+            40.647571
+          ],
+          [
+            -73.915432,
+            40.647544
+          ],
+          [
+            -73.915475,
+            40.647515
+          ],
+          [
+            -73.915506,
+            40.647507
+          ],
+          [
+            -73.916092,
+            40.647128
+          ],
+          [
+            -73.916102,
+            40.647122
+          ],
+          [
+            -73.916145,
+            40.647094
+          ],
+          [
+            -73.916196,
+            40.647059
+          ],
+          [
+            -73.916214,
+            40.647047
+          ],
+          [
+            -73.916557,
+            40.646824
+          ],
+          [
+            -73.916794,
+            40.646669
+          ],
+          [
+            -73.91681,
+            40.646658
+          ],
+          [
+            -73.916867,
+            40.646622
+          ],
+          [
+            -73.916922,
+            40.646586
+          ],
+          [
+            -73.916938,
+            40.646574
+          ],
+          [
+            -73.917617,
+            40.646136
+          ],
+          [
+            -73.919715,
+            40.644779
+          ],
+          [
+            -73.91932,
+            40.644423
+          ],
+          [
+            -73.919012,
+            40.644618
+          ],
+          [
+            -73.91895,
+            40.644657
+          ],
+          [
+            -73.918841,
+            40.644727
+          ],
+          [
+            -73.918199,
+            40.645152
+          ],
+          [
+            -73.918176,
+            40.645166
+          ],
+          [
+            -73.918123,
+            40.6453
+          ],
+          [
+            -73.917813,
+            40.645493
+          ],
+          [
+            -73.917913,
+            40.645578
+          ],
+          [
+            -73.918004,
+            40.645655
+          ],
+          [
+            -73.917913,
+            40.645578
+          ],
+          [
+            -73.917813,
+            40.645493
+          ],
+          [
+            -73.918123,
+            40.6453
+          ],
+          [
+            -73.918176,
+            40.645166
+          ],
+          [
+            -73.918199,
+            40.645152
+          ],
+          [
+            -73.918841,
+            40.644727
+          ],
+          [
+            -73.91895,
+            40.644657
+          ],
+          [
+            -73.919012,
+            40.644618
+          ],
+          [
+            -73.91932,
+            40.644423
+          ],
+          [
+            -73.919715,
+            40.644779
+          ],
+          [
+            -73.919732,
+            40.644795
+          ],
+          [
+            -73.919762,
+            40.644819
+          ],
+          [
+            -73.919793,
+            40.644844
+          ],
+          [
+            -73.919835,
+            40.644854
+          ],
+          [
+            -73.919826,
+            40.644924
+          ],
+          [
+            -73.919864,
+            40.644923
+          ],
+          [
+            -73.919967,
+            40.644917
+          ],
+          [
+            -73.920072,
+            40.644911
+          ],
+          [
+            -73.920114,
+            40.644909
+          ],
+          [
+            -73.920862,
+            40.644878
+          ],
+          [
+            -73.920844,
+            40.644641
+          ],
+          [
+            -73.920837,
+            40.64461
+          ],
+          [
+            -73.920644,
+            40.644484
+          ],
+          [
+            -73.920696,
+            40.64441
+          ],
+          [
+            -73.920792,
+            40.644446
+          ],
+          [
+            -73.920814,
+            40.644405
+          ],
+          [
+            -73.920814,
+            40.644405
+          ],
+          [
+            -73.920829,
+            40.644352
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "route",
+        "variant": "ditmas",
+        "segment": "main",
+        "label": "Ditmas Walkshop",
+        "optional": false,
+        "stop_order": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "routed": true,
+        "walk_miles": 1.33,
+        "walk_minutes": 29,
+        "note": "Geometry follows the OSM pedestrian network (OSRM foot profile)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.920829,
+            40.644352
+          ],
+          [
+            -73.920814,
+            40.644405
+          ],
+          [
+            -73.920792,
+            40.644446
+          ],
+          [
+            -73.920696,
+            40.64441
+          ],
+          [
+            -73.920644,
+            40.644484
+          ],
+          [
+            -73.920837,
+            40.64461
+          ],
+          [
+            -73.920844,
+            40.644641
+          ],
+          [
+            -73.920862,
+            40.644878
+          ],
+          [
+            -73.921327,
+            40.644847
+          ],
+          [
+            -73.921315,
+            40.644739
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "route",
+        "variant": "ditmas",
+        "segment": "spur",
+        "label": "Ditmas Walkshop (optional extension)",
+        "optional": true,
+        "stop_order": [
+          10,
+          11
+        ],
+        "routed": true,
+        "walk_miles": 0.07,
+        "note": "Render dashed. Geometry follows the OSM pedestrian network (OSRM foot profile)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.93037995465203,
+          40.648656592711426
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 1,
+        "name": "Brooklyn Public Library, Rugby Branch",
+        "address": "1000 Utica Ave, Brooklyn, NY 11203",
+        "short": "Library and cooling center",
+        "long": "The Rugby Branch has served East Flatbush since 1946, when it opened as a sub-branch in a rented storefront at 749 Linden Avenue with 7,000 volumes and staff supplemented by volunteers from the East Flatbush Council. It moved to a larger store at 875 Utica in 1951, and on April 1, 1957 opened in its own red brick building here with 25,000 volumes, the second library built under the Beame Plan and the result of more than a decade of organizing by neighborhood residents who wanted a real library. Its 1957 interior was described as the most colorful of any library in the metropolitan area. The branch closed in March 2017 for a renovation first scoped in 2005 at about $1 million, and reopened in July 2021 at a final cost of $10.2 million. That work replaced the HVAC system entirely, added new lighting, improved the facade, and installed an antenna that pushes the branch's wifi out into the surrounding blocks. Today it holds roughly 22,000 items, the Rochelle Tenner Reading Garden, and a mural by Brooklyn artist Hellbent. It sits two blocks from the house where Jackie Robinson lived when he won Rookie of the Year. During heat emergencies the branch operates as a cooling center: free air conditioning, seating, wifi, and charging, open to anyone.",
+        "scale": "NEIGHBORHOOD",
+        "access": "open",
+        "color": "#6CDF67",
+        "color_light": "#118026",
+        "energy_connection": "That $10.2 million renovation is the clearest example of building retrofit anywhere on this walk: mechanical systems, envelope, and lighting done together, on a building that has to serve the public through summers that keep getting hotter. Look for the rooftop equipment and the newer windows; that's the retrofit you're standing in.",
+        "conversation": "A cooling center is a public backstop for a private problem: not every household can afford to run air conditioning, and not every building is wired to support it. What would it take for homes in East Flatbush to stay cool without needing this room? And what else could a building like this do? Solar on the roof, battery storage, a charging station that works when the power doesn't.",
+        "resource": "BPL's catalog and the Center for Brooklyn History hold neighborhood records, photographs, and local history on East Flatbush. Library staff can connect you to city services, and the branch runs free programs year-round. Call 718-566-0053 for current hours and cooling-center status."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.93062729428682,
+          40.649825350752394
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 2,
+        "name": "A Vacant Lot Reimagined",
+        "address": "946 Utica Ave, Brooklyn, NY 11203",
+        "short": "Vacant brownfield lot",
+        "long": "A vacant brownfield lot on Utica Avenue, two minutes from the library and near a proposed IBX station. Lots like this one sit empty across East Flatbush, passed every day and rarely looked at. Through our Reimagine Vacant Lots pop-up events, BKLVLUP invites residents to pause, imagine, and redesign the forgotten spaces around them. Using VR and community knowledge, these events document what kinds of spaces and experiences the neighborhood actually wants. Vacant land is one of the few assets a community can still shape, and what goes on it is a decision worth making together.",
+        "scale": "NEIGHBORHOOD",
+        "access": "sidewalk",
+        "color": "#6CDF67",
+        "color_light": "#118026",
+        "energy_connection": "A brownfield is land whose reuse is complicated by real or suspected contamination, common on commercial corridors that carried a century of fuel, solvents, and auto work. That history shapes what can go here and how much site work comes first, and it is one reason lots like this sit idle while the blocks around them fill in. Look at the frontage, the southern exposure, and how close the site is to the library, the bus route, and the proposed IBX station on Utica.",
+        "conversation": "This is the stop where the tour asks for something rather than explains something. What do you want on this lot? Who decides, and who benefits when it finally gets built on? What would you have to see to believe the answer came from this neighborhood rather than from outside it?",
+        "resource": "BKLVLUP runs Reimagine Vacant Lots pop-ups here; see bklvlup.org to take part. NYC's Department of City Planning and the Office of Environmental Remediation publish the zoning and brownfield status of individual lots. The MTA's Interborough Express project page carries the current station planning for Utica Avenue."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.92968857701426,
+          40.648371757639055
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 3,
+        "name": "East Flatbush Village",
+        "address": "1011 Utica Ave, Brooklyn, NY 11203",
+        "short": "Grassroots youth nonprofit",
+        "long": "East Flatbush Village Inc. is a grassroots Brooklyn nonprofit founded in 2008, working with young people and low-income families through sports, mentorship, and anti-violence programming. It reaches over a thousand families a year, and its programs are free and open. Organizations like this one are among the most durable institutions on a commercial strip. They outlast individual businesses, they hold relationships across generations, and they know who lives where and who needs checking on. That makes them infrastructure in a sense that rarely appears on an infrastructure map: when information needs to move through a neighborhood (a heat advisory, a program deadline, a rebate about to expire, a construction notice), it moves through places like this one far more reliably than through a utility mailer.",
+        "scale": "NEIGHBORHOOD",
+        "access": "visitor",
+        "color": "#6CDF67",
+        "color_light": "#118026",
+        "energy_connection": "Energy programs consistently underperform their eligibility: hundreds of thousands of New York households qualify for bill discounts they never enroll in. The gap is almost never awareness of the problem. It's the absence of a trusted person to explain the form.",
+        "conversation": "Who tells you about things in this neighborhood? If a free program could cut your energy bill, how would you find out it existed? This is also the stop for talking about the COAD, the coalition of local organizations coordinating on emergency preparedness, and which groups in East Flatbush aren't part of it yet.",
+        "resource": "The Flats Rising COAD (Community Organizations Active in Disaster) coordinates local organizations across Flatbush, East Flatbush, and Flatlands. Organizations not yet involved are a priority; ask a BKLVLUP facilitator how to connect."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.92975378899715,
+          40.647622057159175
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 4,
+        "name": "Chef's Choice Brooklyn",
+        "address": "1039 Utica Ave, Brooklyn, NY 11203",
+        "short": "Caribbean wholesale grocer",
+        "long": "Founded in 1987, Chef's Choice Brooklyn has operated for nearly four decades as a wholesale food and paper distributor serving the Caribbean community. It's open seven days a week and sells groceries, meats, and paper goods in bulk to both households and other businesses. Stores like this are the supply chain behind a cultural enclave. They're the reason ingredients for Caribbean cooking are available at a price a family can carry, and they're the wholesale link that keeps smaller shops and restaurants on this corridor stocked. They are also, in energy terms, among the heaviest continuous electricity users on this stretch of Utica Avenue: commercial refrigeration runs twenty-four hours a day, year-round, and its compressors work hardest in exactly the weather that strains the grid.",
+        "scale": "BLOCK",
+        "access": "customer",
+        "color": "#D85390",
+        "color_light": "#D51470",
+        "energy_connection": "Businesses like this are billed on a commercial rate that can include a demand charge — a fee based not on total consumption but on the highest single spike in a billing period. Look through the glass and note whether the cases have doors or night curtains: covered cases can cut refrigeration energy substantially, but they cost more to install, which is a real barrier for a small business.",
+        "conversation": "Decarbonization conversations usually center on homes. What does it mean for the commercial corridor a neighborhood depends on? Efficiency upgrades here lower operating costs and keep prices down. But who pays for the upgrade, and how does a forty-year-old family business access capital for it?",
+        "resource": "Con Edison and NYSERDA both run no-cost energy assessments and equipment rebates for small businesses; refrigeration and lighting typically have the fastest payback. NYC Accelerator provides free energy advising. Con Edison also accepts food spoilage claims after an outage, from both residential and commercial customers."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9274567,
+          40.6490951
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 5,
+        "name": "Johnson Energy Clinic and Cooperative (former)",
+        "address": "436 E 53rd St, Brooklyn, NY 11203",
+        "short": "Early NYC solar home (site)",
+        "long": "This house was the home of the Johnson Energy Clinic and Cooperative, an experimental energy home and one of the earliest solar houses in New York City. Decades before rooftop solar became a commercial industry here, this was an ordinary Flatbush residence retrofitted into a working demonstration of what a house could do with sun, insulation, and careful engineering. The house has since been sold and redeveloped, so what stands here now is not the clinic. Visiting is looking at a site, not a building: the address is public, but this is a private home, so please view it from the sidewalk and do not approach the door or photograph the residents.",
+        "scale": "HOUSEHOLD",
+        "access": "sidewalk",
+        "color": "#4FD8E8",
+        "color_light": "#0E7C8C",
+        "energy_connection": "Everything the rest of this tour discusses in the future tense happened here in the past tense. Solar generation, deep retrofit, energy education, cooperative ownership: this house did all four, with none of the incentives, financing, or installer infrastructure that exist today. The technical lesson is that the building envelope comes first: solar on an uninsulated house is expensive electricity poured into a leaky container, and the early experimental homes understood that before the market did.",
+        "conversation": "This is the stop that reframes the whole walk. East Flatbush isn't waiting to be introduced to clean energy. It has been doing this work, and the record is thin because nobody was writing it down. Who else here has done something like this? Whose garage, basement, or roof holds knowledge that never got documented? And what would have let this survive: cooperative ownership, technical support, financing that doesn't put the house at risk? That list is the agenda.",
+        "resource": "This is the strongest oral-history opportunity on the route; longtime residents may remember the clinic directly. Community solar is the present-day version of what a cooperative was reaching for: a shared array, subscribers who get bill credits, no roof and no upfront cost required. Solar One's Here Comes Solar program provides free technical support for NYC residents and building owners.",
+        "todo": "VERIFY: founder's name, the years the clinic operated, and the systems installed. Sources: NYT City Room 2011-08-03 (reporting the owner at risk of losing the house) and the YouTube video, both held by BKLVLUP/GROUND3D. The house was subsequently sold and redeveloped; confirm the date and whether anything of the original retrofit survives. The address is public and the stop is marked, but the site is a private home: keep the view-from-the-sidewalk line in the description."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.91869743552688,
+          40.65137199318552
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 6,
+        "name": "De Event Room",
+        "address": "634 Remsen Ave, Brooklyn, NY 11236",
+        "short": "Private event space",
+        "long": "De Event Room is a private event space on Remsen Avenue, on a block where residential buildings and small businesses sit side by side. The indoor space runs over 1,100 square feet across two rooms, with a backyard patio and pool area outside, multiple restrooms, two bar areas, and a buffet-style warming station. It accommodates roughly a hundred people and hosts bridal showers, birthdays, corporate events, pop-ups, workshops, and product launches. Read that amenity list the way an emergency planner would: capacity for a hundred, working restrooms, food service, climate control, outdoor space, and an operator on site who knows the building. That is most of what a neighborhood needs from a refuge.",
+        "scale": "BLOCK",
+        "access": "booking",
+        "color": "#D85390",
+        "color_light": "#D51470",
+        "energy_connection": "The gap between an event space and a refuge is a backup power source, a cooling strategy, and an agreement reached before an emergency rather than during one. Across the country, the buildings that end up sheltering people are rarely the ones on the official list. They're the halls, basements, and storefronts people already know how to walk into.",
+        "conversation": "Does East Flatbush need a new building, or upgrades to the ones it already has? What would it take to make five existing rooms in this neighborhood outage-ready instead of one new one? Who would maintain them?",
+        "resource": "Solar-plus-storage for a building this size is eligible for federal tax credits, NYSERDA incentives, and NYC property tax abatements for solar, which can be stacked. Building owners can get free advising through NYC Accelerator."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.91422443933631,
+          40.649393652888115
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 7,
+        "name": "Railroad Playground",
+        "address": "Ditmas Ave between E 91st and E 92nd St, Brooklyn, NY 11236",
+        "short": "1957 park on the rail corridor",
+        "long": "Originally called Ditmas Playground, this park takes its earlier name from the street to the southeast, itself named for the Van Ditmarsen family who settled in the village of Flatbush in the late 17th century. The Canarsie and Rockaway Beach Railroad, a Long Island Rail Road subsidiary whose branch opened in 1865, runs just south of the park, and in the early 20th century it was the most popular route for New Yorkers heading to the amusement park at Canarsie Beach. The same corridor serves the Brooklyn Terminal Market down the block, which historically supplied fresh produce and lodging for upstate and Long Island farmers who couldn't make the return trip in a day. The Parks Department acquired this site in 1954 and opened the park in 1957 with handball and basketball courts, a softball field, a public restroom, a wading pool, a children's play area, and shade trees planted around the entire perimeter. A 1997 renovation costing $735,000 gave the park its train-and-market theme: locomotive-shaped play units, railroad pavement of stone and steel track, and steel panels depicting flowers, watermelon, tomatoes, onions, and grapes. It's open daily, 6am to 9pm, with a wheelchair-accessible restroom and water play features.",
+        "scale": "NEIGHBORHOOD",
+        "access": "open",
+        "color": "#6CDF67",
+        "color_light": "#118026",
+        "energy_connection": "A park is environmental infrastructure that runs on nothing. Tree canopy and vegetated ground can hold a park meaningfully cooler than the paved blocks around it. Shade blocks solar radiation before it reaches a surface, and plants cool the air directly as they release water. That's passive cooling: no compressor, no meter, no failure mode during an outage. Soil and planting also absorb stormwater that would otherwise run into the sewer. The water play features do the same job a cooling center does, outdoors and for free. The shade trees planted around this perimeter in 1957 are doing work today that no one billed for.",
+        "conversation": "Parks are usually filed under recreation. What changes if they're budgeted as cooling infrastructure? East Flatbush and Canarsie have less tree canopy than the city average, and canopy tracks closely with heat vulnerability across New York. Who decides where trees get planted, and how long does it take a new one to do the work an old one already does?",
+        "resource": "NYC Parks takes tree service and new tree requests through 311 and the Forestry Division. Street tree planting is free to residents and property owners. The Parks tree map shows every street tree in the city, including the stormwater and cooling benefit each provides annually."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.91345543431983,
+          40.648339092431364
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 8,
+        "name": "Con Edison Gateway Park Substation",
+        "address": "789 E 91st St, Brooklyn, NY 11236",
+        "short": "$1.3B Con Edison substation",
+        "long": "Con Edison is building the Gateway Park Substation here at a cost of $1.3 billion. It's an indoor high-voltage transmission substation: a building rather than an open yard of exposed equipment, a more expensive choice made for a dense residential setting. When complete it will serve roughly 52,000 customers across Central and East Brooklyn, primarily Canarsie and Remsen Village. The project includes about 7.5 miles of new underground feeder cable connecting it into the network, part of a larger cable program reported at around 28 miles. Con Edison's stated reasons for building it are capacity, overload prevention, and network resiliency: the company projects Brooklyn's electricity demand will rise roughly 16 percent over the next decade, driven by population growth, new development, and the shift from gas to electric heating, cooking, and vehicles. Power will reach this station through underground transmission from the Brooklyn Clean Energy Hub in Vinegar Hill, an $810 million transmission substation built to accept up to 1,500 megawatts and designed as an interconnection point for offshore wind generated in the New York Bight, roughly 150 miles off the coast of Long Island and New Jersey.",
+        "scale": "REGIONAL",
+        "access": "sidewalk",
+        "color": "#9076F7",
+        "color_light": "#6844D3",
+        "energy_connection": "A substation is where transmission becomes distribution. Electricity travels long distances at very high voltage because that's efficient, then has to be stepped down to a level that can safely enter streets and buildings. That conversion needs land, access, and physical protection, which is why substations end up beside rail corridors and industrial edges. This one is also a decarbonization asset: the shift away from gas only works if the electric system can carry the load gas used to. Con Edison's public FAQ for the project specifically addresses Railroad Playground across the street, stating the company doesn't anticipate changes to the playground's size.",
+        "conversation": "Electrification is the core decarbonization strategy for New York, and it depends on infrastructure like this. So what does the neighborhood hosting it get? Jobs during construction and after? Priority for grid reliability? Community solar or storage connected to it? East Flatbush and Canarsie have experienced outages during past heat waves, including a deliberate shutoff in July 2019 that affected tens of thousands of southeast Brooklyn customers — this station is part of Con Edison's answer to that history. Is it enough, and who decides?",
+        "resource": "Con Edison maintains a public project page for the Gateway Park Substation with a community contact. Major infrastructure projects and rate changes are decided by the New York Public Service Commission, where written public comment becomes part of the official record. Rate cases are when comments carry the most weight."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.91784006730398,
+          40.64576668511091
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 9,
+        "name": "National Grid — Canarsie Service Center",
+        "address": "8424 Ditmas Ave, Brooklyn, NY 11236",
+        "short": "National Grid gas campus",
+        "long": "This is National Grid's Canarsie Service Center, a working operations campus spanning an address range along Ditmas Avenue with multiple numbered buildings. It's an operational base rather than a customer office, housing crews, equipment, and administration for the gas distribution network across Brooklyn and Queens. New gas service applications for both boroughs are processed through this address. The site also includes a public compressed natural gas fueling station, operated by Clean Energy and open 24 hours at 3,000 and 3,600 PSI, used by CNG fleet vehicles. National Grid's downstate business is the former Brooklyn Union Gas Company, and the utility delivers gas to roughly 1.8 million customers across New York City and Long Island.",
+        "scale": "REGIONAL",
+        "access": "sidewalk",
+        "color": "#9076F7",
+        "color_light": "#6844D3",
+        "energy_connection": "In New York City the utility split is fixed and worth memorizing: Con Edison delivers electricity to all five boroughs, while National Grid delivers natural gas — and only gas — to Brooklyn, Queens, and Staten Island. Two companies, two bills, two separate emergency numbers, two separate regulatory proceedings. Most households pay both and can't say which does what. That matters practically, because if you smell gas and call the wrong company you lose time you don't have. It also matters structurally: the decarbonization debate is fundamentally about which of these two connections into your home grows and which shrinks.",
+        "conversation": "Gas heats and cooks in most of East Flatbush's housing stock. Electrification would change that, swapping heat pumps for boilers and induction for burners, with implications for indoor air quality and childhood asthma, and with real costs and real disruption. What does a fair transition look like for homeowners here, many of them older, many in buildings that need envelope work before any equipment swap makes sense? And what happens to the workers and the network at a site like this one?",
+        "resource": "Gas emergency, 24 hours: 1-800-892-2345. Leave the building first, then call. The Energy Affordability Program discounts bills for income-eligible households at both National Grid and Con Edison, targeting energy costs at or below 6 percent of household income; receiving HEAP generally enrolls you automatically. Under New York's HEFPA law, households including someone 62 or older, blind, or disabled, or with a certified medical condition have shutoff protections that many eligible people never claim. See nyeeap.com."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.92082873529188,
+          40.64435222474173
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 10,
+        "name": "Wyckoff House Museum",
+        "address": "5816 Clarendon Rd, Brooklyn, NY 11203",
+        "short": "NY's oldest building, 1652",
+        "long": "The Wyckoff House is the oldest surviving building in New York State and was New York City's first officially designated landmark. Built around 1652 on land taken from the Lenape in the 1630s, it sits on about an acre and a half within Milton Fidler Park. Pieter Claesen Wyckoff arrived in New Netherland in 1637 as an indentured laborer; after completing his indenture he and Grietje van Nes settled in the village of Nieuw Amersfoort, in what is now East Flatbush and Flatlands. The Historic House Trust's account of the site is direct about who worked this land: Dutch-American landowners, enslaved and freed Africans, and later European immigrants farmed some of the most fertile ground in the country here. The property remained a working farm until 1901. Today it's owned by NYC Parks, operated by the Wyckoff House & Association, and runs farm-based and school programs, a working garden, and seasonal markets.",
+        "scale": "HOUSEHOLD",
+        "access": "appointment",
+        "color": "#4FD8E8",
+        "color_light": "#0E7C8C",
+        "energy_connection": "This building ran for roughly 249 years with no electric grid, no gas main, and no meter. Everything it did to stay habitable was structural: window placement for cross-ventilation, deep eaves for shade, thick walls that slow heat transfer, a cellar for cold storage, and trees left standing where they'd do the most good. That's passive design, and its defining property is that it doesn't fail during an outage because it never depended on power. Modern high-performance building — Passive House, deep energy retrofits — is largely a rediscovery of these principles with better materials and measurement.",
+        "conversation": "This is the stop for elders. Before central air, what did your household actually do in a heat wave? Which room did you sleep in, what did you do with the windows, where did people go during the day? Those answers are passive cooling strategy, held as memory rather than as building code, and no technical report contains them.",
+        "resource": "The museum is open on a limited schedule and some access is by appointment. Call (718) 629-5400 or email info@wyckoffmuseum.org, especially for a group visit. School and farm programs run year-round."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9213153001351,
+          40.64473940909019
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 11,
+        "name": "Footprints Cafe",
+        "address": "5814 Clarendon Rd, Brooklyn, NY 11203",
+        "short": "Caribbean restaurant",
+        "long": "Footprints is a Caribbean restaurant known for a large menu and a lively room, and it has grown into a small chain with several Brooklyn locations. If the one on your route differs from what's described here, that's expected; this is a general profile rather than a single address. It sits directly beside the Wyckoff House Museum, which makes for an unusual adjacency: a 17th-century farm and a Caribbean kitchen on the same block, three hundred and seventy years apart, both organized around food grown somewhere and cooked here. Restaurants are also among the most energy-intense small businesses per square foot anywhere on a commercial strip.",
+        "scale": "BLOCK",
+        "access": "customer",
+        "color": "#D85390",
+        "color_light": "#D51470",
+        "energy_connection": "A commercial kitchen runs gas ranges, an exhaust hood pulling conditioned air out of the building during every open hour, walk-in refrigeration, and a dining room that has to stay comfortable while the kitchen behind it runs hot. Kitchen ventilation alone is often the largest single load, because every cubic foot of air the hood removes has to be replaced and re-conditioned. It's also the least visible: you can see a solar panel, but you can't see a hood running at full speed all day.",
+        "conversation": "Of everything you saw today, what did you not know this morning? What's on your own block that you'll look at differently? And what should the Green Book include so that someone who never takes this tour still gets the benefit of it?",
+        "resource": "Con Edison and NYSERDA small-business programs cover energy assessments and equipment rebates; for restaurants, refrigeration and kitchen ventilation typically offer the highest return. Con Edison food spoilage claims apply to restaurants after an outage."
+      }
+    }
+  ]
+}

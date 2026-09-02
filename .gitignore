@@ -1,0 +1,7 @@
+web/config.js
+static/*.png
+static/*.svg
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
