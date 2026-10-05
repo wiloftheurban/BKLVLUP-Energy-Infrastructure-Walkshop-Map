@@ -84,7 +84,7 @@ dark ground, `color_light` for a light one.
 | Scale | Dark (`color`) | on #22232E | Light (`color_light`) | on Positron | Stops |
 |---|---|---|---|---|---|
 | HOUSEHOLD | `#4FD8E8` | 9.14:1 | `#0E7C8C` | 4.70:1 | Johnson Energy Clinic, Wyckoff House |
-| BLOCK | `#D85390` | 4.12:1 | `#D51470` | 4.83:1 | Chef's Choice, De Event Room, Footprints |
+| BLOCK | `#D85390` | 4.12:1 | `#D51470` | 4.83:1 | De Event Room, Footprints |
 | NEIGHBORHOOD | `#6CDF67` | 9.19:1 | `#118026` | 4.86:1 | Library, vacant lot, EF Village, Railroad Pgd |
 | REGIONAL | `#9076F7` | 4.54:1 | `#6844D3` | 5.99:1 | Con Ed Gateway, National Grid |
 
@@ -350,7 +350,6 @@ numbered pin needs 12pt (0.167 in) for the numeral to read. Tightest pairs:
 | Pair | Ground | On card |
 |---|---|---|
 | Wyckoff -> Footprints | 59 m | 0.26 in |
-| Chef's Choice -> EF Village | 84 m | 0.38 in |
 | Library -> vacant lot | 132 m | 0.59 in |
 | Railroad Pgd -> Con Ed | 134 m | 0.60 in |
 

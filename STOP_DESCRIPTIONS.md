@@ -71,27 +71,6 @@ The Flats Rising COAD (Community Organizations Active in Disaster) coordinates l
 
 ---
 
-## 4. Chef's Choice Brooklyn
-*1039 Utica Ave, Brooklyn, NY 11203* · scale: **Block** · access: customer · map label: **Caribbean wholesale grocer**
-
-**Description** *(shown in map popups)*
-
-Founded in 1987, Chef's Choice Brooklyn has operated for nearly four decades as a wholesale food and paper distributor serving the Caribbean community. It's open seven days a week and sells groceries, meats, and paper goods in bulk to both households and other businesses. Stores like this are the supply chain behind a cultural enclave. They're the reason ingredients for Caribbean cooking are available at a price a family can carry, and they're the wholesale link that keeps smaller shops and restaurants on this corridor stocked. They are also, in energy terms, among the heaviest continuous electricity users on this stretch of Utica Avenue: commercial refrigeration runs twenty-four hours a day, year-round, and its compressors work hardest in exactly the weather that strains the grid.
-
-**Energy connection**
-
-Businesses like this are billed on a commercial rate that can include a demand charge — a fee based not on total consumption but on the highest single spike in a billing period. Look through the glass and note whether the cases have doors or night curtains: covered cases can cut refrigeration energy substantially, but they cost more to install, which is a real barrier for a small business.
-
-**Conversation**
-
-Decarbonization conversations usually center on homes. What does it mean for the commercial corridor a neighborhood depends on? Efficiency upgrades here lower operating costs and keep prices down. But who pays for the upgrade, and how does a forty-year-old family business access capital for it?
-
-**Resource**
-
-Con Edison and NYSERDA both run no-cost energy assessments and equipment rebates for small businesses; refrigeration and lighting typically have the fastest payback. NYC Accelerator provides free energy advising. Con Edison also accepts food spoilage claims after an outage, from both residential and commercial customers.
-
----
-
 ## 5. Johnson Energy Clinic and Cooperative (former)
 *436 E 53rd St, Brooklyn, NY 11203* · scale: **Household** · access: sidewalk · map label: **Early NYC solar home (site)**
 
