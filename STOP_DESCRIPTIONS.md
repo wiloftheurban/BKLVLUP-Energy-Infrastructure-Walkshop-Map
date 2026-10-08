@@ -94,6 +94,29 @@ This is the strongest oral-history opportunity on the route; longtime residents 
 
 ---
 
+## 12. Bracci Fence & Iron Works
+*1440 Utica Ave, Brooklyn, NY* · scale: **Block** · access: customer · map label: **Fence & iron works supplier**
+
+**Description** *(shown in map popups)*
+
+Bracci Fence & Iron Works is a fence and ironwork supplier on Utica Avenue, south of the rest of this cluster of stops. It sits within the stretch of the corridor BKLVLUP has proposed as a Brownfield Opportunity Area, part of a push to shape what gets built here on purpose, ahead of the investment and pressure a planned Interborough Express station on Utica Avenue (the next stop) is expected to bring.
+
+**Energy connection**
+
+A metalwork shop is a different kind of energy user than the retail and service stops elsewhere on this walk: welding, cutting, and fabrication draw on electricity in bursts rather than the steady draw of refrigeration or lighting, and the work itself is a small-scale example of the kind of industrial corridor use that transit-oriented rezoning debates have to reckon with.
+
+**Conversation**
+
+Transit brings investment, and investment brings pressure to rezone and redevelop. What happens to a working metal shop like this one when the IBX arrives next door? Who gets to decide whether a corridor like this stays productive, or turns over entirely?
+
+**Resource**
+
+BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.
+
+> **VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to "customer" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade.**
+
+---
+
 ## 6. De Event Room
 *634 Remsen Ave, Brooklyn, NY 11236* · scale: **Block** · access: booking · map label: **Private event space**
 

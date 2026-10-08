@@ -42,6 +42,15 @@ dict(id=5, name="Johnson Energy Clinic and Cooperative (former)", address="436 E
  resource="This is the strongest oral-history opportunity on the route; longtime residents may remember the clinic directly. Community solar is the present-day version of what a cooperative was reaching for: a shared array, subscribers who get bill credits, no roof and no upfront cost required. Solar One's Here Comes Solar program provides free technical support for NYC residents and building owners.",
  todo="VERIFY: founder's name, the years the clinic operated, and the systems installed. Sources: NYT City Room 2011-08-03 (reporting the owner at risk of losing the house) and the YouTube video, both held by BKLVLUP/GROUND3D. The house was subsequently sold and redeveloped; confirm the date and whether anything of the original retrofit survives. The address is public and the stop is marked, but the site is a private home: keep the view-from-the-sidewalk line in the description."),
 
+dict(id=12, name="Bracci Fence & Iron Works", address="1440 Utica Ave, Brooklyn, NY",
+     lat=40.63737410901783, lon=-73.92899285835945, scale="BLOCK", access="customer",
+     short="Fence & iron works supplier",
+ long="Bracci Fence & Iron Works is a fence and ironwork supplier on Utica Avenue, south of the rest of this cluster of stops. It sits within the stretch of the corridor BKLVLUP has proposed as a Brownfield Opportunity Area, part of a push to shape what gets built here on purpose, ahead of the investment and pressure a planned Interborough Express station on Utica Avenue (the next stop) is expected to bring.",
+ energy="A metalwork shop is a different kind of energy user than the retail and service stops elsewhere on this walk: welding, cutting, and fabrication draw on electricity in bursts rather than the steady draw of refrigeration or lighting, and the work itself is a small-scale example of the kind of industrial corridor use that transit-oriented rezoning debates have to reckon with.",
+ talk="Transit brings investment, and investment brings pressure to rezone and redevelop. What happens to a working metal shop like this one when the IBX arrives next door? Who gets to decide whether a corridor like this stays productive, or turns over entirely?",
+ resource="BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.",
+ todo="VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to \"customer\" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade."),
+
 dict(id=6, name="De Event Room", address="634 Remsen Ave, Brooklyn, NY 11236",
      lat=40.65137199318552, lon=-73.91869743552688, scale="BLOCK", access="booking",
      short="Private event space",
@@ -101,12 +110,14 @@ ROUTES = [
             "gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn "
             "Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
       rationale="Private business hosts the reception, supporting a local operator. Opens on infrastructure while energy is high, closes on the Utica community cluster, and lands at the library where there is room to sit and debrief. The vacant lot is the optional last word."),
- dict(id="utica", name="Utica Walkshop", order=[1,2,3,5], spur=[],
-      gather="Rugby Library", end="Johnson Energy Clinic",
+ dict(id="utica", name="Utica Walkshop", order=[1,2,3,5,12], spur=[],
+      gather="Rugby Library", end="Bracci Fence & Iron Works",
       blurb="The social infrastructure half. This route covers a few sites of social "
             "infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush "
-            "Village, and one of New York City's earliest solar homes. Short "
-            "enough for a lunch hour, a school group, or a walk with elders.",
+            "Village, one of New York City's earliest solar homes, and a working metal "
+            "shop at the southern end of the corridor BKLVLUP is proposing for transit-"
+            "oriented community development ahead of the planned IBX station on Utica "
+            "Avenue. Short enough for a lunch hour, a school group, or a walk with elders.",
       rationale="Short community-scale tour. Accessible length; can run in a lunch hour."),
  dict(id="ditmas", name="Ditmas Walkshop", order=[6,7,8,9,10], spur=[10,11],
       gather="De Event Room", end="Wyckoff House Museum",

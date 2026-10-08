@@ -36,10 +36,10 @@ Longest leg: **709 m** (Footprints Cafe → Johnson Energy Clinic and Cooperativ
 
 ## Utica Walkshop
 
-`utica` · **Gather:** Rugby Library · **End:** Johnson Energy Clinic
-**4 stops · 0.32 mi · ~6 min walking**  _(straight-line estimate — routing unavailable)_
+`utica` · **Gather:** Rugby Library · **End:** Bracci Fence & Iron Works
+**5 stops · 1.13 mi · ~23 min walking**  _(straight-line estimate — routing unavailable)_
 
-The social infrastructure half. This route covers a few sites of social infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush Village, and one of New York City's earliest solar homes. Short enough for a lunch hour, a school group, or a walk with elders.
+The social infrastructure half. This route covers a few sites of social infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush Village, one of New York City's earliest solar homes, and a working metal shop at the southern end of the corridor BKLVLUP is proposing for transit-oriented community development ahead of the planned IBX station on Utica Avenue. Short enough for a lunch hour, a school group, or a walk with elders.
 
 *Facilitator note:* Short community-scale tour. Accessible length; can run in a lunch hour.
 
@@ -49,8 +49,9 @@ The social infrastructure half. This route covers a few sites of social infrastr
 | 2 | A Vacant Lot Reimagined | 132 m |
 | 3 | East Flatbush Village | 180 m |
 | 4 | Johnson Energy Clinic and Cooperative (former) | 205 m |
+| 5 | Bracci Fence & Iron Works | 1310 m |
 
-Longest leg: **205 m** (East Flatbush Village → Johnson Energy Clinic and Cooperative (former))
+Longest leg: **1310 m** (Johnson Energy Clinic and Cooperative (former) → Bracci Fence & Iron Works)
 
 ---
 
