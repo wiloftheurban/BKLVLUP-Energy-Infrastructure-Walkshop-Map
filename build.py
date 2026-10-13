@@ -33,14 +33,6 @@ dict(id=3, name="East Flatbush Village", address="1011 Utica Ave, Brooklyn, NY 1
  talk="Who tells you about things in this neighborhood? If a free program could cut your energy bill, how would you find out it existed? This is also the stop for talking about the COAD, the coalition of local organizations coordinating on emergency preparedness, and which groups in East Flatbush aren't part of it yet.",
  resource="The Flats Rising COAD (Community Organizations Active in Disaster) coordinates local organizations across Flatbush, East Flatbush, and Flatlands. Organizations not yet involved are a priority; ask a BKLVLUP facilitator how to connect."),
 
-dict(id=4, name="Chef's Choice Brooklyn", address="1039 Utica Ave, Brooklyn, NY 11203",
-     lat=40.647622057159175, lon=-73.92975378899715, scale="BLOCK", access="customer",
-     short="Caribbean wholesale grocer",
- long="Founded in 1987, Chef's Choice Brooklyn has operated for nearly four decades as a wholesale food and paper distributor serving the Caribbean community. It's open seven days a week and sells groceries, meats, and paper goods in bulk to both households and other businesses. Stores like this are the supply chain behind a cultural enclave. They're the reason ingredients for Caribbean cooking are available at a price a family can carry, and they're the wholesale link that keeps smaller shops and restaurants on this corridor stocked. They are also, in energy terms, among the heaviest continuous electricity users on this stretch of Utica Avenue: commercial refrigeration runs twenty-four hours a day, year-round, and its compressors work hardest in exactly the weather that strains the grid.",
- energy="Businesses like this are billed on a commercial rate that can include a demand charge — a fee based not on total consumption but on the highest single spike in a billing period. Look through the glass and note whether the cases have doors or night curtains: covered cases can cut refrigeration energy substantially, but they cost more to install, which is a real barrier for a small business.",
- talk="Decarbonization conversations usually center on homes. What does it mean for the commercial corridor a neighborhood depends on? Efficiency upgrades here lower operating costs and keep prices down. But who pays for the upgrade, and how does a forty-year-old family business access capital for it?",
- resource="Con Edison and NYSERDA both run no-cost energy assessments and equipment rebates for small businesses; refrigeration and lighting typically have the fastest payback. NYC Accelerator provides free energy advising. Con Edison also accepts food spoilage claims after an outage, from both residential and commercial customers."),
-
 dict(id=5, name="Johnson Energy Clinic and Cooperative (former)", address="436 E 53rd St, Brooklyn, NY 11203",
      lat=40.6490951, lon=-73.9274567, scale="HOUSEHOLD", access="sidewalk",
      short="Early NYC solar home (site)",
@@ -49,6 +41,15 @@ dict(id=5, name="Johnson Energy Clinic and Cooperative (former)", address="436 E
  talk="This is the stop that reframes the whole walk. East Flatbush isn't waiting to be introduced to clean energy. It has been doing this work, and the record is thin because nobody was writing it down. Who else here has done something like this? Whose garage, basement, or roof holds knowledge that never got documented? And what would have let this survive: cooperative ownership, technical support, financing that doesn't put the house at risk? That list is the agenda.",
  resource="This is the strongest oral-history opportunity on the route; longtime residents may remember the clinic directly. Community solar is the present-day version of what a cooperative was reaching for: a shared array, subscribers who get bill credits, no roof and no upfront cost required. Solar One's Here Comes Solar program provides free technical support for NYC residents and building owners.",
  todo="VERIFY: founder's name, the years the clinic operated, and the systems installed. Sources: NYT City Room 2011-08-03 (reporting the owner at risk of losing the house) and the YouTube video, both held by BKLVLUP/GROUND3D. The house was subsequently sold and redeveloped; confirm the date and whether anything of the original retrofit survives. The address is public and the stop is marked, but the site is a private home: keep the view-from-the-sidewalk line in the description."),
+
+dict(id=12, name="Bracci Fence & Iron Works", address="1440 Utica Ave, Brooklyn, NY",
+     lat=40.63737410901783, lon=-73.92899285835945, scale="BLOCK", access="customer",
+     short="Fence & iron works supplier",
+ long="Bracci Fence & Iron Works is a fence and ironwork supplier on Utica Avenue, south of the rest of this cluster of stops. It sits within the stretch of the corridor BKLVLUP has proposed as a Brownfield Opportunity Area, part of a push to shape what gets built here on purpose, ahead of the investment and pressure a planned Interborough Express station on Utica Avenue (the next stop) is expected to bring.",
+ energy="A metalwork shop is a different kind of energy user than the retail and service stops elsewhere on this walk: welding, cutting, and fabrication draw on electricity in bursts rather than the steady draw of refrigeration or lighting, and the work itself is a small-scale example of the kind of industrial corridor use that transit-oriented rezoning debates have to reckon with.",
+ talk="Transit brings investment, and investment brings pressure to rezone and redevelop. What happens to a working metal shop like this one when the IBX arrives next door? Who gets to decide whether a corridor like this stays productive, or turns over entirely?",
+ resource="BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.",
+ todo="VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to \"customer\" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade."),
 
 dict(id=6, name="De Event Room", address="634 Remsen Ave, Brooklyn, NY 11236",
      lat=40.65137199318552, lon=-73.91869743552688, scale="BLOCK", access="booking",
@@ -102,26 +103,28 @@ dict(id=11, name="Footprints Cafe", address="5814 Clarendon Rd, Brooklyn, NY 112
 # ---------------------------------------------------------------- routes
 ROUTES = [
 # List order is switcher order; the first entry is the default on load.
- dict(id="full", name="The Full Walk", order=[6,7,8,9,10,11,5,4,3,1], spur=[1,2],
+ dict(id="full", name="The Full Walk", order=[6,7,8,9,10,11,5,3,1], spur=[1,2],
       gather="De Event Room", end="Brooklyn Public Library, Rugby Branch",
-      blurb="This route is the longest and most comprehensive, featuring all 11 stops. Gather "
-            "at De Event Room, head east through the playground, the substation, and the gas "
-            "campus, then come back along Clarendon and up Utica. It ends at the Brooklyn "
+      blurb="This route is the longest and most comprehensive, visiting every stop on the walk. "
+            "Gather at De Event Room, head east through the playground, the substation, and the "
+            "gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn "
             "Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
       rationale="Private business hosts the reception, supporting a local operator. Opens on infrastructure while energy is high, closes on the Utica community cluster, and lands at the library where there is room to sit and debrief. The vacant lot is the optional last word."),
- dict(id="utica", name="Utica Walkshop", order=[1,2,3,4,5], spur=[],
-      gather="Rugby Library", end="Johnson Energy Clinic",
+ dict(id="utica", name="Utica Walkshop", order=[1,2,3,5,12], spur=[],
+      gather="Rugby Library", end="Bracci Fence & Iron Works",
       blurb="The social infrastructure half. This route covers a few sites of social "
             "infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush "
-            "Village, Chef's Choice, and one of New York City's earliest solar homes. Short "
-            "enough for a lunch hour, a school group, or a walk with elders.",
+            "Village, one of New York City's earliest solar homes, and a working metal "
+            "shop at the southern end of the corridor BKLVLUP is proposing for transit-"
+            "oriented community development ahead of the planned IBX station on Utica "
+            "Avenue. Short enough for a lunch hour, a school group, or a walk with elders.",
       rationale="Short community-scale tour. Accessible length; can run in a lunch hour."),
  dict(id="ditmas", name="Ditmas Walkshop", order=[6,7,8,9,10], spur=[10,11],
       gather="De Event Room", end="Wyckoff House Museum",
       blurb="The built infrastructure half. It begins at De Event Room as a gathering space, "
             "and continues on to Railroad Playground, the Con Edison substation, and National "
             "Grid, ending at the Wyckoff House Museum, with an optional extension to grab a "
-            "meal at Footprints. Pairs with the Utica Walkshop to cover all eleven stops "
+            "meal at Footprints. Pairs with the Utica Walkshop to cover every stop "
             "across two sessions.",
       rationale="Infrastructure and utilities tour. Pairs with the Utica Walkshop as a two-session series."),
 ]
@@ -178,8 +181,19 @@ except (OSError, ValueError):
 _CACHE_DIRTY = False
 
 
-def _cache_key(ids):
-    return ">".join(str(i) for i in ids)
+def _cache_key(ids, via=None):
+    key = ">".join(str(i) for i in ids)
+    if via:
+        # Fold any via points into the key so a forced detour gets its own
+        # cache entry instead of silently reusing the un-via'd route.
+        vparts = []
+        for i in range(len(ids) - 1):
+            pts = via.get((ids[i], ids[i + 1]))
+            if pts:
+                vparts.append(f"{ids[i]}-{ids[i+1]}:" + ",".join(f"{lon:.5f}/{lat:.5f}" for lon, lat in pts))
+        if vparts:
+            key += "|via=" + ";".join(vparts)
+    return key
 
 
 def _http_get(url):
@@ -203,18 +217,30 @@ def _http_get(url):
         return json.loads(out.stdout)
 
 
-def _osrm_foot(ids):
+def _osrm_foot(ids, via=None):
     """Walking path through the given stop ids on the OSM pedestrian network.
-    Returns dict(routed, coords, legs_m, total_m, duration_s) or None on failure."""
-    pts = ";".join(f"{BY_ID[i]['lon']:.6f},{BY_ID[i]['lat']:.6f}" for i in ids)
+    `via` is an optional {(from_id, to_id): [(lon, lat), ...]} map of forced
+    waypoints — a way to push OSRM off a bad detour (e.g. through a driveway
+    or a campus interior) and onto the real street frontage between two
+    specific stops. Returns dict(routed, coords, legs_m, total_m, duration_s)
+    or None on failure."""
+    via = via or {}
+    waypoints = []       # flat (lon, lat) list sent to OSRM, stops + any via points
+    stop_wp_idx = []     # waypoints-index of each id in `ids`, for leg merging
+    for i, sid in enumerate(ids):
+        stop_wp_idx.append(len(waypoints))
+        waypoints.append((BY_ID[sid]["lon"], BY_ID[sid]["lat"]))
+        if i < len(ids) - 1:
+            waypoints.extend(via.get((sid, ids[i + 1]), []))
+    pts = ";".join(f"{lon:.6f},{lat:.6f}" for lon, lat in waypoints)
     url = OSRM_URL + pts + "?overview=full&geometries=geojson&steps=false&annotations=false"
     try:
         doc = _http_get(url)
     except (OSError, ValueError, RuntimeError) as exc:
-        print(f"  routing {_cache_key(ids)}: request failed ({exc})")
+        print(f"  routing {_cache_key(ids, via)}: request failed ({exc})")
         return None
     if doc.get("code") != "Ok" or not doc.get("routes"):
-        print(f"  routing {_cache_key(ids)}: no route (code {doc.get('code')})")
+        print(f"  routing {_cache_key(ids, via)}: no route (code {doc.get('code')})")
         return None
     rt = doc["routes"][0]
     coords = [[x, y] for x, y in rt["geometry"]["coordinates"]]
@@ -227,41 +253,70 @@ def _osrm_foot(ids):
             pt = [BY_ID[sid]["lon"], BY_ID[sid]["lat"]]
             coords.insert(0, pt) if idx == 0 else coords.append(pt)
     coords = [[round(x, 6), round(y, 6)] for x, y in coords]
-    return {"routed": True, "coords": coords,
-            "legs_m": [round(l["distance"], 1) for l in rt["legs"]],
-            "total_m": round(rt["distance"], 1),
+    # OSRM returns one leg per waypoint-to-waypoint hop, but a via point adds
+    # extra hops inside a single stop-to-stop span — merge those back down to
+    # exactly len(ids)-1 legs so downstream code (ROUTES.md's per-stop table)
+    # can keep indexing legs_m by stop position.
+    raw_legs = [round(l["distance"], 1) for l in rt["legs"]]
+    legs_m = [round(sum(raw_legs[stop_wp_idx[i]:stop_wp_idx[i + 1]]), 1)
+              for i in range(len(ids) - 1)]
+    return {"routed": True, "coords": coords, "legs_m": legs_m,
+            "total_m": round(sum(legs_m), 1),
             "duration_s": round(rt["duration"], 1)}
 
 
-def walk_path(ids):
+def walk_path(ids, via=None):
     """Routed pedestrian geometry + stats for a stop sequence, with a
-    straight-line fallback (routed=False) when OSRM is unavailable."""
+    straight-line fallback (routed=False) when OSRM is unavailable. See
+    _osrm_foot for `via`."""
     global _CACHE_DIRTY
-    key = _cache_key(ids)
+    via = via or {}
+    key = _cache_key(ids, via)
     hit = _CACHE.get(key) if ROUTING else None
     if hit is None and ROUTING:
-        hit = _osrm_foot(ids)
+        hit = _osrm_foot(ids, via)
         if hit:
             _CACHE[key] = hit
             _CACHE_DIRTY = True
             time.sleep(1.0)  # be polite to the shared OSRM instance
     if hit is None:
-        legs_m = [round(haversine(BY_ID[ids[i]], BY_ID[ids[i + 1]]), 1)
-                  for i in range(len(ids) - 1)]
+        # Straight-line fallback: still routes through any via point, so a
+        # forced detour at least shows up as a kink rather than disappearing
+        # when the network is unavailable.
+        legs_m, coords = [], [[BY_ID[ids[0]]["lon"], BY_ID[ids[0]]["lat"]]]
+        for i in range(len(ids) - 1):
+            a, b = ids[i], ids[i + 1]
+            chain = [BY_ID[a]] + [{"lon": lon, "lat": lat} for lon, lat in via.get((a, b), [])] + [BY_ID[b]]
+            legs_m.append(round(sum(haversine(chain[k], chain[k + 1]) for k in range(len(chain) - 1)), 1))
+            coords.extend([p["lon"], p["lat"]] for p in chain[1:])
         total_m = round(sum(legs_m), 1)
-        hit = {"routed": False,
-               "coords": [[BY_ID[i]["lon"], BY_ID[i]["lat"]] for i in ids],
-               "legs_m": legs_m, "total_m": total_m,
+        hit = {"routed": False, "coords": coords, "legs_m": legs_m, "total_m": total_m,
                "duration_s": round(total_m / WALK_SPEED_MS, 1)}
     return hit
 
+
+# Forced waypoints for legs where OSRM's shortest path cuts through a campus
+# interior, a driveway, or otherwise doesn't match the street frontage a
+# pedestrian would actually use. Keyed by (from_stop_id, to_stop_id); each
+# entry is a list of [lon, lat] points the route must pass through.
+#
+# National Grid (9) -> Wyckoff House (10) on the `ditmas` route: OSRM's
+# cached path ducks south off Ditmas Ave into what looks like the National
+# Grid campus interior (coords cluster around -73.9197,40.6448, well south
+# of the Ditmas Ave frontage) before continuing to Clarendon Rd/Wyckoff --
+# see data/route_cache.json key "6>7>8>9>10", points 72-90. Needs a confirmed
+# waypoint on the Ditmas Ave sidewalk (e.g. dropped in geojson.io or via
+# Google Maps "what's here") before this can be forced straight; add it here
+# once confirmed, e.g.:
+#   VIA = {(9, 10): [(-73.9188, 40.6448)]}   # <- placeholder, NOT verified
+VIA = {}
 
 # Resolve every variant's geometry once, up front.
 PATHS = {}
 for r in ROUTES:
     print(f"routing {r['id']} …")
-    PATHS[r["id"]] = {"main": walk_path(r["order"]),
-                      "spur": walk_path(r["spur"]) if r["spur"] else None}
+    PATHS[r["id"]] = {"main": walk_path(r["order"], VIA),
+                      "spur": walk_path(r["spur"], VIA) if r["spur"] else None}
 if _CACHE_DIRTY:
     with open(CACHE_PATH, "w") as _f:
         json.dump(_CACHE, _f, indent=2)

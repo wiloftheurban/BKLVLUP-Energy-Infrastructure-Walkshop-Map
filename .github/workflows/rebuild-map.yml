@@ -1,0 +1,44 @@
+name: Rebuild map data
+
+# build.py needs real internet access to OSRM (routing.openstreetmap.de) to
+# snap routes to the sidewalk network. That's blocked in some sandboxed dev
+# environments (see CLAUDE.md > Route geometry) but GitHub Actions runners
+# have normal outbound internet, so this is the reliable way to regenerate
+# data/tour.geojson, data/route_cache.json, ROUTES.md and STOP_DESCRIPTIONS.md
+# with real routed geometry instead of the straight-line fallback.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["**"]
+    paths:
+      - "build.py"
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # build.py is pure stdlib (json/math/os/shutil/subprocess/time/urllib) —
+      # no pip install needed.
+      - name: Run build.py
+        run: python3 build.py
+
+      - name: Commit regenerated files if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/tour.geojson data/route_cache.json ROUTES.md STOP_DESCRIPTIONS.md
+          if git diff --cached --quiet; then
+            echo "No changes from build.py — nothing to commit."
+          else
+            git commit -m "Rebuild map data (real OSRM routing)"
+            git push
+          fi

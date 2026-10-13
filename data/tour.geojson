@@ -75,7 +75,6 @@
           10,
           11,
           5,
-          4,
           3,
           1
         ],
@@ -84,32 +83,32 @@
           2
         ],
         "routed": true,
-        "walk_miles": 2.35,
-        "walk_minutes": 50,
+        "walk_miles": 2.2,
+        "walk_minutes": 47,
         "spur_miles": 0.11,
-        "stop_count": 11,
-        "blurb": "This route is the longest and most comprehensive, featuring all 11 stops. Gather at De Event Room, head east through the playground, the substation, and the gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
+        "stop_count": 10,
+        "blurb": "This route is the longest and most comprehensive, visiting every stop on the walk. Gather at De Event Room, head east through the playground, the substation, and the gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
         "rationale": "Private business hosts the reception, supporting a local operator. Opens on infrastructure while energy is high, closes on the Utica community cluster, and lands at the library where there is room to sit and debrief. The vacant lot is the optional last word."
       },
       {
         "id": "utica",
         "name": "Utica Walkshop",
         "gather": "Rugby Library",
-        "end": "Johnson Energy Clinic",
+        "end": "Bracci Fence & Iron Works",
         "order": [
           1,
           2,
           3,
-          4,
-          5
+          5,
+          12
         ],
         "spur": [],
         "routed": true,
-        "walk_miles": 0.56,
-        "walk_minutes": 12,
+        "walk_miles": 1.36,
+        "walk_minutes": 29,
         "spur_miles": null,
         "stop_count": 5,
-        "blurb": "The social infrastructure half. This route covers a few sites of social infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush Village, Chef's Choice, and one of New York City's earliest solar homes. Short enough for a lunch hour, a school group, or a walk with elders.",
+        "blurb": "The social infrastructure half. This route covers a few sites of social infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush Village, one of New York City's earliest solar homes, and a working metal shop at the southern end of the corridor BKLVLUP is proposing for transit-oriented community development ahead of the planned IBX station on Utica Avenue. Short enough for a lunch hour, a school group, or a walk with elders.",
         "rationale": "Short community-scale tour. Accessible length; can run in a lunch hour."
       },
       {
@@ -133,7 +132,7 @@
         "walk_minutes": 29,
         "spur_miles": 0.07,
         "stop_count": 6,
-        "blurb": "The built infrastructure half. It begins at De Event Room as a gathering space, and continues on to Railroad Playground, the Con Edison substation, and National Grid, ending at the Wyckoff House Museum, with an optional extension to grab a meal at Footprints. Pairs with the Utica Walkshop to cover all eleven stops across two sessions.",
+        "blurb": "The built infrastructure half. It begins at De Event Room as a gathering space, and continues on to Railroad Playground, the Con Edison substation, and National Grid, ending at the Wyckoff House Museum, with an optional extension to grab a meal at Footprints. Pairs with the Utica Walkshop to cover every stop across two sessions.",
         "rationale": "Infrastructure and utilities tour. Pairs with the Utica Walkshop as a two-session series."
       }
     ],
@@ -158,108 +157,120 @@
             40.651168
           ],
           [
-            -73.918289,
-            40.651183
+            -73.918296,
+            40.65115
           ],
           [
-            -73.918219,
-            40.651231
+            -73.918235,
+            40.651094
           ],
           [
-            -73.91815,
-            40.651279
+            -73.918194,
+            40.651057
           ],
           [
-            -73.918123,
-            40.651296
+            -73.918171,
+            40.651037
           ],
           [
-            -73.918099,
-            40.651276
+            -73.91649,
+            40.649531
           ],
           [
-            -73.918036,
-            40.651223
+            -73.916478,
+            40.649518
           ],
           [
-            -73.917997,
-            40.65119
+            -73.916418,
+            40.649463
           ],
           [
-            -73.917978,
-            40.651172
+            -73.916374,
+            40.649423
           ],
           [
-            -73.917366,
-            40.651562
+            -73.91636,
+            40.649412
           ],
           [
-            -73.917354,
-            40.651571
+            -73.91633,
+            40.649425
           ],
           [
-            -73.917308,
-            40.651599
+            -73.916256,
+            40.64947
           ],
           [
-            -73.917261,
-            40.651627
+            -73.916185,
+            40.649513
           ],
           [
-            -73.917247,
-            40.651636
+            -73.916163,
+            40.64953
           ],
           [
-            -73.917086,
-            40.651485
+            -73.915549,
+            40.649932
           ],
           [
-            -73.915574,
-            40.65013
+            -73.91553,
+            40.649937
           ],
           [
-            -73.914967,
-            40.650513
+            -73.915486,
+            40.649965
           ],
           [
-            -73.914965,
-            40.650497
+            -73.915443,
+            40.649992
           ],
           [
-            -73.914903,
-            40.65044
+            -73.915434,
+            40.650008
           ],
           [
-            -73.914861,
-            40.6504
+            -73.914383,
+            40.64908
           ],
           [
-            -73.914835,
-            40.650394
+            -73.91418,
+            40.649214
           ],
           [
-            -73.913931,
-            40.649582
+            -73.914088,
+            40.649274
           ],
           [
-            -73.913393,
-            40.649098
+            -73.91418,
+            40.649214
           ],
           [
-            -73.91338,
-            40.649074
+            -73.914383,
+            40.64908
           ],
           [
-            -73.913321,
-            40.649017
+            -73.913979,
+            40.648723
           ],
           [
-            -73.913279,
-            40.648977
+            -73.913995,
+            40.648698
           ],
           [
-            -73.913253,
-            40.648955
+            -73.914038,
+            40.64867
+          ],
+          [
+            -73.913961,
+            40.648601
+          ],
+          [
+            -73.913902,
+            40.648548
+          ],
+          [
+            -73.913862,
+            40.648575
           ],
           [
             -73.913829,
@@ -886,64 +897,8 @@
             40.648323
           ],
           [
-            -73.929091,
+            -73.929288,
             40.648312
-          ],
-          [
-            -73.929082,
-            40.648245
-          ],
-          [
-            -73.929074,
-            40.648185
-          ],
-          [
-            -73.929073,
-            40.648174
-          ],
-          [
-            -73.929846,
-            40.648116
-          ],
-          [
-            -73.929837,
-            40.648036
-          ],
-          [
-            -73.929824,
-            40.647898
-          ],
-          [
-            -73.929796,
-            40.64762
-          ],
-          [
-            -73.929824,
-            40.647898
-          ],
-          [
-            -73.929837,
-            40.648036
-          ],
-          [
-            -73.929846,
-            40.648116
-          ],
-          [
-            -73.929848,
-            40.648136
-          ],
-          [
-            -73.929857,
-            40.6482
-          ],
-          [
-            -73.929865,
-            40.648257
-          ],
-          [
-            -73.929868,
-            40.648281
           ],
           [
             -73.929681,
@@ -993,13 +948,12 @@
           10,
           11,
           5,
-          4,
           3,
           1
         ],
         "routed": true,
-        "walk_miles": 2.35,
-        "walk_minutes": 50,
+        "walk_miles": 2.2,
+        "walk_minutes": 47,
         "note": "Geometry follows the OSM pedestrian network (OSRM foot profile)."
       }
     },
@@ -1095,63 +1049,7 @@
             40.648291
           ],
           [
-            -73.929868,
-            40.648281
-          ],
-          [
-            -73.929865,
-            40.648257
-          ],
-          [
-            -73.929857,
-            40.6482
-          ],
-          [
-            -73.929848,
-            40.648136
-          ],
-          [
-            -73.929846,
-            40.648116
-          ],
-          [
-            -73.929837,
-            40.648036
-          ],
-          [
-            -73.929824,
-            40.647898
-          ],
-          [
-            -73.929796,
-            40.64762
-          ],
-          [
-            -73.929824,
-            40.647898
-          ],
-          [
-            -73.929837,
-            40.648036
-          ],
-          [
-            -73.929846,
-            40.648116
-          ],
-          [
-            -73.929073,
-            40.648174
-          ],
-          [
-            -73.929074,
-            40.648185
-          ],
-          [
-            -73.929082,
-            40.648245
-          ],
-          [
-            -73.929091,
+            -73.929288,
             40.648312
           ],
           [
@@ -1203,8 +1101,228 @@
             40.649106
           ],
           [
-            -73.927457,
-            40.649095
+            -73.927211,
+            40.64844
+          ],
+          [
+            -73.927219,
+            40.648425
+          ],
+          [
+            -73.927212,
+            40.648362
+          ],
+          [
+            -73.927205,
+            40.648301
+          ],
+          [
+            -73.927197,
+            40.648286
+          ],
+          [
+            -73.927009,
+            40.64658
+          ],
+          [
+            -73.927014,
+            40.646567
+          ],
+          [
+            -73.927007,
+            40.646501
+          ],
+          [
+            -73.927001,
+            40.646437
+          ],
+          [
+            -73.926998,
+            40.646424
+          ],
+          [
+            -73.926961,
+            40.646084
+          ],
+          [
+            -73.926853,
+            40.645206
+          ],
+          [
+            -73.926814,
+            40.644721
+          ],
+          [
+            -73.926812,
+            40.644709
+          ],
+          [
+            -73.926804,
+            40.644607
+          ],
+          [
+            -73.926792,
+            40.644525
+          ],
+          [
+            -73.926788,
+            40.644511
+          ],
+          [
+            -73.926773,
+            40.644481
+          ],
+          [
+            -73.926623,
+            40.643075
+          ],
+          [
+            -73.926572,
+            40.64257
+          ],
+          [
+            -73.92657,
+            40.6424
+          ],
+          [
+            -73.926571,
+            40.642373
+          ],
+          [
+            -73.926563,
+            40.642314
+          ],
+          [
+            -73.926553,
+            40.642248
+          ],
+          [
+            -73.926545,
+            40.642228
+          ],
+          [
+            -73.926538,
+            40.642215
+          ],
+          [
+            -73.926532,
+            40.642197
+          ],
+          [
+            -73.926323,
+            40.640061
+          ],
+          [
+            -73.926322,
+            40.640042
+          ],
+          [
+            -73.926314,
+            40.639973
+          ],
+          [
+            -73.926307,
+            40.639911
+          ],
+          [
+            -73.926301,
+            40.6399
+          ],
+          [
+            -73.926285,
+            40.639872
+          ],
+          [
+            -73.926152,
+            40.638627
+          ],
+          [
+            -73.926153,
+            40.638603
+          ],
+          [
+            -73.926159,
+            40.638569
+          ],
+          [
+            -73.926805,
+            40.638224
+          ],
+          [
+            -73.926895,
+            40.638175
+          ],
+          [
+            -73.926909,
+            40.638168
+          ],
+          [
+            -73.926977,
+            40.638139
+          ],
+          [
+            -73.927031,
+            40.63811
+          ],
+          [
+            -73.927053,
+            40.638093
+          ],
+          [
+            -73.927789,
+            40.637713
+          ],
+          [
+            -73.927803,
+            40.637709
+          ],
+          [
+            -73.927863,
+            40.637672
+          ],
+          [
+            -73.92793,
+            40.637632
+          ],
+          [
+            -73.927954,
+            40.637617
+          ],
+          [
+            -73.928727,
+            40.637559
+          ],
+          [
+            -73.928724,
+            40.637535
+          ],
+          [
+            -73.928718,
+            40.637472
+          ],
+          [
+            -73.928711,
+            40.637412
+          ],
+          [
+            -73.928709,
+            40.637386
+          ],
+          [
+            -73.928736,
+            40.637384
+          ],
+          [
+            -73.928848,
+            40.637378
+          ],
+          [
+            -73.928972,
+            40.637371
+          ],
+          [
+            -73.928993,
+            40.63737
           ]
         ]
       },
@@ -1218,12 +1336,12 @@
           1,
           2,
           3,
-          4,
-          5
+          5,
+          12
         ],
         "routed": true,
-        "walk_miles": 0.56,
-        "walk_minutes": 12,
+        "walk_miles": 1.36,
+        "walk_minutes": 29,
         "note": "Geometry follows the OSM pedestrian network (OSRM foot profile)."
       }
     },
@@ -1795,31 +1913,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.92975378899715,
-          40.647622057159175
-        ]
-      },
-      "properties": {
-        "kind": "stop",
-        "stop_id": 4,
-        "name": "Chef's Choice Brooklyn",
-        "address": "1039 Utica Ave, Brooklyn, NY 11203",
-        "short": "Caribbean wholesale grocer",
-        "long": "Founded in 1987, Chef's Choice Brooklyn has operated for nearly four decades as a wholesale food and paper distributor serving the Caribbean community. It's open seven days a week and sells groceries, meats, and paper goods in bulk to both households and other businesses. Stores like this are the supply chain behind a cultural enclave. They're the reason ingredients for Caribbean cooking are available at a price a family can carry, and they're the wholesale link that keeps smaller shops and restaurants on this corridor stocked. They are also, in energy terms, among the heaviest continuous electricity users on this stretch of Utica Avenue: commercial refrigeration runs twenty-four hours a day, year-round, and its compressors work hardest in exactly the weather that strains the grid.",
-        "scale": "BLOCK",
-        "access": "customer",
-        "color": "#D85390",
-        "color_light": "#D51470",
-        "energy_connection": "Businesses like this are billed on a commercial rate that can include a demand charge — a fee based not on total consumption but on the highest single spike in a billing period. Look through the glass and note whether the cases have doors or night curtains: covered cases can cut refrigeration energy substantially, but they cost more to install, which is a real barrier for a small business.",
-        "conversation": "Decarbonization conversations usually center on homes. What does it mean for the commercial corridor a neighborhood depends on? Efficiency upgrades here lower operating costs and keep prices down. But who pays for the upgrade, and how does a forty-year-old family business access capital for it?",
-        "resource": "Con Edison and NYSERDA both run no-cost energy assessments and equipment rebates for small businesses; refrigeration and lighting typically have the fastest payback. NYC Accelerator provides free energy advising. Con Edison also accepts food spoilage claims after an outage, from both residential and commercial customers."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -73.9274567,
           40.6490951
         ]
@@ -1839,6 +1932,32 @@
         "conversation": "This is the stop that reframes the whole walk. East Flatbush isn't waiting to be introduced to clean energy. It has been doing this work, and the record is thin because nobody was writing it down. Who else here has done something like this? Whose garage, basement, or roof holds knowledge that never got documented? And what would have let this survive: cooperative ownership, technical support, financing that doesn't put the house at risk? That list is the agenda.",
         "resource": "This is the strongest oral-history opportunity on the route; longtime residents may remember the clinic directly. Community solar is the present-day version of what a cooperative was reaching for: a shared array, subscribers who get bill credits, no roof and no upfront cost required. Solar One's Here Comes Solar program provides free technical support for NYC residents and building owners.",
         "todo": "VERIFY: founder's name, the years the clinic operated, and the systems installed. Sources: NYT City Room 2011-08-03 (reporting the owner at risk of losing the house) and the YouTube video, both held by BKLVLUP/GROUND3D. The house was subsequently sold and redeveloped; confirm the date and whether anything of the original retrofit survives. The address is public and the stop is marked, but the site is a private home: keep the view-from-the-sidewalk line in the description."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.92899285835945,
+          40.63737410901783
+        ]
+      },
+      "properties": {
+        "kind": "stop",
+        "stop_id": 12,
+        "name": "Bracci Fence & Iron Works",
+        "address": "1440 Utica Ave, Brooklyn, NY",
+        "short": "Fence & iron works supplier",
+        "long": "Bracci Fence & Iron Works is a fence and ironwork supplier on Utica Avenue, south of the rest of this cluster of stops. It sits within the stretch of the corridor BKLVLUP has proposed as a Brownfield Opportunity Area, part of a push to shape what gets built here on purpose, ahead of the investment and pressure a planned Interborough Express station on Utica Avenue (the next stop) is expected to bring.",
+        "scale": "BLOCK",
+        "access": "customer",
+        "color": "#D85390",
+        "color_light": "#D51470",
+        "energy_connection": "A metalwork shop is a different kind of energy user than the retail and service stops elsewhere on this walk: welding, cutting, and fabrication draw on electricity in bursts rather than the steady draw of refrigeration or lighting, and the work itself is a small-scale example of the kind of industrial corridor use that transit-oriented rezoning debates have to reckon with.",
+        "conversation": "Transit brings investment, and investment brings pressure to rezone and redevelop. What happens to a working metal shop like this one when the IBX arrives next door? Who gets to decide whether a corridor like this stays productive, or turns over entirely?",
+        "resource": "BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.",
+        "todo": "VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to \"customer\" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade."
       }
     },
     {

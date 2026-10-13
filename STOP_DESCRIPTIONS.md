@@ -71,27 +71,6 @@ The Flats Rising COAD (Community Organizations Active in Disaster) coordinates l
 
 ---
 
-## 4. Chef's Choice Brooklyn
-*1039 Utica Ave, Brooklyn, NY 11203* · scale: **Block** · access: customer · map label: **Caribbean wholesale grocer**
-
-**Description** *(shown in map popups)*
-
-Founded in 1987, Chef's Choice Brooklyn has operated for nearly four decades as a wholesale food and paper distributor serving the Caribbean community. It's open seven days a week and sells groceries, meats, and paper goods in bulk to both households and other businesses. Stores like this are the supply chain behind a cultural enclave. They're the reason ingredients for Caribbean cooking are available at a price a family can carry, and they're the wholesale link that keeps smaller shops and restaurants on this corridor stocked. They are also, in energy terms, among the heaviest continuous electricity users on this stretch of Utica Avenue: commercial refrigeration runs twenty-four hours a day, year-round, and its compressors work hardest in exactly the weather that strains the grid.
-
-**Energy connection**
-
-Businesses like this are billed on a commercial rate that can include a demand charge — a fee based not on total consumption but on the highest single spike in a billing period. Look through the glass and note whether the cases have doors or night curtains: covered cases can cut refrigeration energy substantially, but they cost more to install, which is a real barrier for a small business.
-
-**Conversation**
-
-Decarbonization conversations usually center on homes. What does it mean for the commercial corridor a neighborhood depends on? Efficiency upgrades here lower operating costs and keep prices down. But who pays for the upgrade, and how does a forty-year-old family business access capital for it?
-
-**Resource**
-
-Con Edison and NYSERDA both run no-cost energy assessments and equipment rebates for small businesses; refrigeration and lighting typically have the fastest payback. NYC Accelerator provides free energy advising. Con Edison also accepts food spoilage claims after an outage, from both residential and commercial customers.
-
----
-
 ## 5. Johnson Energy Clinic and Cooperative (former)
 *436 E 53rd St, Brooklyn, NY 11203* · scale: **Household** · access: sidewalk · map label: **Early NYC solar home (site)**
 
@@ -112,6 +91,29 @@ This is the stop that reframes the whole walk. East Flatbush isn't waiting to be
 This is the strongest oral-history opportunity on the route; longtime residents may remember the clinic directly. Community solar is the present-day version of what a cooperative was reaching for: a shared array, subscribers who get bill credits, no roof and no upfront cost required. Solar One's Here Comes Solar program provides free technical support for NYC residents and building owners.
 
 > **VERIFY: founder's name, the years the clinic operated, and the systems installed. Sources: NYT City Room 2011-08-03 (reporting the owner at risk of losing the house) and the YouTube video, both held by BKLVLUP/GROUND3D. The house was subsequently sold and redeveloped; confirm the date and whether anything of the original retrofit survives. The address is public and the stop is marked, but the site is a private home: keep the view-from-the-sidewalk line in the description.**
+
+---
+
+## 12. Bracci Fence & Iron Works
+*1440 Utica Ave, Brooklyn, NY* · scale: **Block** · access: customer · map label: **Fence & iron works supplier**
+
+**Description** *(shown in map popups)*
+
+Bracci Fence & Iron Works is a fence and ironwork supplier on Utica Avenue, south of the rest of this cluster of stops. It sits within the stretch of the corridor BKLVLUP has proposed as a Brownfield Opportunity Area, part of a push to shape what gets built here on purpose, ahead of the investment and pressure a planned Interborough Express station on Utica Avenue (the next stop) is expected to bring.
+
+**Energy connection**
+
+A metalwork shop is a different kind of energy user than the retail and service stops elsewhere on this walk: welding, cutting, and fabrication draw on electricity in bursts rather than the steady draw of refrigeration or lighting, and the work itself is a small-scale example of the kind of industrial corridor use that transit-oriented rezoning debates have to reckon with.
+
+**Conversation**
+
+Transit brings investment, and investment brings pressure to rezone and redevelop. What happens to a working metal shop like this one when the IBX arrives next door? Who gets to decide whether a corridor like this stays productive, or turns over entirely?
+
+**Resource**
+
+BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.
+
+> **VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to "customer" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade.**
 
 ---
 
