@@ -128,9 +128,10 @@ open / visitor / customer / booking / appointment  -> solid outline
 sidewalk                                           -> dashed outline
 ```
 
-Four stops are sidewalk-only: Con Ed, National Grid, the vacant lot, and the
-Johnson Energy Clinic. On a public map that persists, a stranger needs to know
-whether they can actually go in.
+Five stops are sidewalk-only: Con Ed, National Grid, the vacant lot, the
+Johnson Energy Clinic, and the planned IBX Utica Avenue Station (there's
+nothing to enter yet). On a public map that persists, a stranger needs to
+know whether they can actually go in.
 
 **The Johnson Energy Clinic is a private residence.** The address is public and
 the exact point is marked, but the house was sold and redeveloped, so the stop
@@ -290,20 +291,24 @@ outdoors before committing either way.
 
 Center: `40.6478, -73.9219`. Extent 1,449 m E–W x 781 m N–S — **1.86:1 landscape**.
 
-Eleven stops. Three route variants, defined in `metadata.route_variants` and
-documented in `ROUTES.md`:
+Twelve stops (Chef's Choice removed; Bracci Fence & Iron Works and the
+planned IBX Utica Avenue Station added — see Editorial frame). Three route
+variants, defined in `metadata.route_variants` and documented in `ROUTES.md`:
 
 Switcher order is the order of `ROUTES` in `build.py`; the first entry is the
 default on load.
 
-| id | Name | Gather | End | Stops | Distance |
-|---|---|---|---|---|---|
-| `full` | The Full Walk *(default)* | De Event Room | Rugby Library (+ vacant lot) | 11 | 2.35 mi |
-| `utica` | Utica Walkshop | Rugby Library | Johnson Energy Clinic | 5 | 0.56 mi |
-| `ditmas` | Ditmas Walkshop | De Event Room | Wyckoff House (+ Footprints) | 6 | 1.33 mi |
+| id | Name | Gather | End | Stops |
+|---|---|---|---|---|
+| `full` | The Full Walk *(default)* | De Event Room | Rugby Library (+ vacant lot) | 10 |
+| `utica` | Utica Walkshop | Rugby Library | IBX Utica Avenue Station (planned) | 6 |
+| `ditmas` | Ditmas Walkshop | De Event Room | Wyckoff House (+ Footprints) | 6 |
 
-Stop counts include the optional extension; `walk_miles` covers the main
-`order` only, with the spur reported separately as `spur_miles`.
+Stop counts include the optional extension. Distance column dropped here
+because `full` and `utica` currently carry `routed: false` straight-line
+fallback distances (this sandbox can't reach the public OSRM router) — see
+`.github/workflows/rebuild-map.yml`. Check `ROUTES.md` or `metadata.route_variants`
+in `data/tour.geojson` for current, accurate figures once rebuilt.
 
 Distances are the routed walking distance (see below), not straight-line.
 `ROUTES.md` carries the per-leg breakdown and walk times. Utica and Ditmas are a
@@ -489,8 +494,11 @@ the anchor, not as one pin among nine. Stops 5 and 6 are a matched pair (Con
 Edison's own FAQ names Railroad Playground); consider drawing that relationship
 explicitly rather than leaving it to the reader.
 
-Content status: all eleven descriptions rewritten (content v4; stop 2 replaced
-in v5 — "A Vacant Lot Reimagined"). See
-`STOP_DESCRIPTIONS.md` for the readable version and the verification notes.
+Content status: content v6. Chef's Choice removed (v6); Bracci Fence & Iron
+Works and the planned IBX Utica Avenue Station added to close out the Utica
+Walkshop (v6, stop_ids 12 and 13 — both carry `todo` verification flags, the
+IBX stop's placement especially: it's a placeholder near 1440 Utica Ave, not
+a confirmed station site). Stop 2 replaced in v5 — "A Vacant Lot Reimagined."
+See `STOP_DESCRIPTIONS.md` for the readable version and the verification notes.
 Do not invent facts. Items flagged "needs local confirmation" there must be
 checked before anything goes to print.

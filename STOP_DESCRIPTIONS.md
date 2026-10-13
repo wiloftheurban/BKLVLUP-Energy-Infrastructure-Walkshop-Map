@@ -117,6 +117,29 @@ BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / F
 
 ---
 
+## 13. IBX Utica Avenue Station (planned)
+*Utica Ave, Brooklyn, NY (exact site not yet determined)* · scale: **Regional** · access: sidewalk · map label: **Planned IBX light rail stop**
+
+**Description** *(shown in map popups)*
+
+The MTA's Interborough Express (IBX) is a planned 14-mile light rail line connecting Bay Ridge, Brooklyn to Jackson Heights, Queens along an existing freight rail corridor, with Utica Avenue identified as one of two stops serving this part of Brooklyn (the other is Remsen Avenue). No exact platform site has been chosen; the MTA's own station maps mark it only as "Utica Avenue," and the corridor runs immediately next to 1440 Utica Ave, so this pin marks the area rather than a confirmed point. Within a 30-minute transit trip, MTA projects the area around this station would gain access to 3.8 times the jobs it can reach today (234,000 to 886,000) and 4.2 times the higher-education institutions (5 to 21).
+
+**Energy connection**
+
+IBX is itself an energy story: trading car trips and bus transfers for an electrified light rail cuts fuel burned per rider, and the MTA's own planning briefings describe coordinating with Con Edison on grid capacity for the line, the same utility and the same kind of planning conversation as the Gateway Park Substation earlier on this walk. Two new electrified passenger tracks would share the right-of-way with existing diesel freight service.
+
+**Conversation**
+
+A transit project at this scale moves on its own timeline, mostly decided somewhere else. What does East Flatbush want to see built around a station before it arrives, rather than reacting to whatever gets built after? Who is at the table now, while the corridor is still being planned, versus who shows up once construction starts?
+
+**Resource**
+
+Project page and comment form: new.mta.info/ibx. Email IBXOutreach@mtacd.org with questions or comments at any time; comments also carry weight during the SEQRA environmental review's public hearings. BKLVLUP's Brownfield Opportunity Area application for this corridor is the organized, local vehicle for shaping what happens here.
+
+> **VERIFY before publishing: this coordinate is a placeholder near 1440 Utica Ave, not a confirmed station site -- the MTA has stated exact station locations are subject to change during design. Update once MTA publishes a specific site, and recheck the ridership/access figures against the current DEIS when it is released (cited figures are from the April 2026 Brooklyn CB17 briefing).**
+
+---
+
 ## 6. De Event Room
 *634 Remsen Ave, Brooklyn, NY 11236* · scale: **Block** · access: booking · map label: **Private event space**
 

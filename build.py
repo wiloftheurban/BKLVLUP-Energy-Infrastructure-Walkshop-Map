@@ -51,6 +51,15 @@ dict(id=12, name="Bracci Fence & Iron Works", address="1440 Utica Ave, Brooklyn,
  resource="BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / Farragut corridor is the vehicle for community-led planning here; ask a facilitator how to get involved.",
  todo="VERIFY: business hours, whether it's open to casual walk-in visitors (access is currently set to \"customer\" as a placeholder), and any history of the business. No independent source for this stop yet beyond the name, address, and trade."),
 
+dict(id=13, name="IBX Utica Avenue Station (planned)", address="Utica Ave, Brooklyn, NY (exact site not yet determined)",
+     lat=40.63800, lon=-73.92870, scale="REGIONAL", access="sidewalk",
+     short="Planned IBX light rail stop",
+ long="The MTA's Interborough Express (IBX) is a planned 14-mile light rail line connecting Bay Ridge, Brooklyn to Jackson Heights, Queens along an existing freight rail corridor, with Utica Avenue identified as one of two stops serving this part of Brooklyn (the other is Remsen Avenue). No exact platform site has been chosen; the MTA's own station maps mark it only as \"Utica Avenue,\" and the corridor runs immediately next to 1440 Utica Ave, so this pin marks the area rather than a confirmed point. Within a 30-minute transit trip, MTA projects the area around this station would gain access to 3.8 times the jobs it can reach today (234,000 to 886,000) and 4.2 times the higher-education institutions (5 to 21).",
+ energy="IBX is itself an energy story: trading car trips and bus transfers for an electrified light rail cuts fuel burned per rider, and the MTA's own planning briefings describe coordinating with Con Edison on grid capacity for the line, the same utility and the same kind of planning conversation as the Gateway Park Substation earlier on this walk. Two new electrified passenger tracks would share the right-of-way with existing diesel freight service.",
+ talk="A transit project at this scale moves on its own timeline, mostly decided somewhere else. What does East Flatbush want to see built around a station before it arrives, rather than reacting to whatever gets built after? Who is at the table now, while the corridor is still being planned, versus who shows up once construction starts?",
+ resource="Project page and comment form: new.mta.info/ibx. Email IBXOutreach@mtacd.org with questions or comments at any time; comments also carry weight during the SEQRA environmental review's public hearings. BKLVLUP's Brownfield Opportunity Area application for this corridor is the organized, local vehicle for shaping what happens here.",
+ todo="VERIFY before publishing: this coordinate is a placeholder near 1440 Utica Ave, not a confirmed station site -- the MTA has stated exact station locations are subject to change during design. Update once MTA publishes a specific site, and recheck the ridership/access figures against the current DEIS when it is released (cited figures are from the April 2026 Brooklyn CB17 briefing)."),
+
 dict(id=6, name="De Event Room", address="634 Remsen Ave, Brooklyn, NY 11236",
      lat=40.65137199318552, lon=-73.91869743552688, scale="BLOCK", access="booking",
      short="Private event space",
@@ -110,15 +119,16 @@ ROUTES = [
             "gas campus, then come back along Clarendon and up Utica. It ends at the Brooklyn "
             "Public Library, Rugby Branch, with an optional extension to a local vacant lot.",
       rationale="Private business hosts the reception, supporting a local operator. Opens on infrastructure while energy is high, closes on the Utica community cluster, and lands at the library where there is room to sit and debrief. The vacant lot is the optional last word."),
- dict(id="utica", name="Utica Walkshop", order=[1,2,3,5,12], spur=[],
-      gather="Rugby Library", end="Bracci Fence & Iron Works",
+ dict(id="utica", name="Utica Walkshop", order=[1,2,3,5,12,13], spur=[],
+      gather="Rugby Library", end="IBX Utica Avenue Station (planned)",
       blurb="The social infrastructure half. This route covers a few sites of social "
             "infrastructure along Utica Avenue: the library, a vacant lot, East Flatbush "
-            "Village, one of New York City's earliest solar homes, and a working metal "
-            "shop at the southern end of the corridor BKLVLUP is proposing for transit-"
-            "oriented community development ahead of the planned IBX station on Utica "
-            "Avenue. Short enough for a lunch hour, a school group, or a walk with elders.",
-      rationale="Short community-scale tour. Accessible length; can run in a lunch hour."),
+            "Village, one of New York City's earliest solar homes, a working metal shop, "
+            "and the site the MTA has identified for a future Interborough Express stop. "
+            "Short enough for a lunch hour, a school group, or a walk with elders.",
+      rationale="Short community-scale tour. Accessible length; can run in a lunch hour. "
+                "Ends on the IBX stop on purpose: it's the thing the rest of the corridor "
+                "is being planned around."),
  dict(id="ditmas", name="Ditmas Walkshop", order=[6,7,8,9,10], spur=[10,11],
       gather="De Event Room", end="Wyckoff House Museum",
       blurb="The built infrastructure half. It begins at De Event Room as a gathering space, "
