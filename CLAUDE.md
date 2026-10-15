@@ -128,9 +128,10 @@ open / visitor / customer / booking / appointment  -> solid outline
 sidewalk                                           -> dashed outline
 ```
 
-Four stops are sidewalk-only: Con Ed, National Grid, the vacant lot, and the
-Johnson Energy Clinic. On a public map that persists, a stranger needs to know
-whether they can actually go in.
+Five stops are sidewalk-only: Con Ed, National Grid, the vacant lot, the
+Johnson Energy Clinic, and the planned IBX Utica Avenue Station (there's
+nothing to enter yet). On a public map that persists, a stranger needs to
+know whether they can actually go in.
 
 **The Johnson Energy Clinic is a private residence.** The address is public and
 the exact point is marked, but the house was sold and redeveloped, so the stop
@@ -290,20 +291,24 @@ outdoors before committing either way.
 
 Center: `40.6478, -73.9219`. Extent 1,449 m E–W x 781 m N–S — **1.86:1 landscape**.
 
-Eleven stops. Three route variants, defined in `metadata.route_variants` and
-documented in `ROUTES.md`:
+Twelve stops (Chef's Choice removed; Bracci Fence & Iron Works and the
+planned IBX Utica Avenue Station added — see Editorial frame). Three route
+variants, defined in `metadata.route_variants` and documented in `ROUTES.md`:
 
 Switcher order is the order of `ROUTES` in `build.py`; the first entry is the
 default on load.
 
 | id | Name | Gather | End | Stops | Distance |
 |---|---|---|---|---|---|
-| `full` | The Full Walk *(default)* | De Event Room | Rugby Library (+ vacant lot) | 11 | 2.35 mi |
-| `utica` | Utica Walkshop | Rugby Library | Johnson Energy Clinic | 5 | 0.56 mi |
+| `full` | The Full Walk *(default)* | De Event Room | Rugby Library (+ vacant lot) | 10 | 2.20 mi |
+| `utica` | Utica Walkshop | Rugby Library | IBX Utica Avenue Station (planned) | 6 | 1.42 mi |
 | `ditmas` | Ditmas Walkshop | De Event Room | Wyckoff House (+ Footprints) | 6 | 1.33 mi |
 
 Stop counts include the optional extension; `walk_miles` covers the main
-`order` only, with the spur reported separately as `spur_miles`.
+`order` only, with the spur reported separately as `spur_miles`. All three
+variants are routed on the real OSM pedestrian network as of content v6 —
+check `ROUTES.md` or `metadata.route_variants` for exact current figures
+rather than trusting this table if it drifts.
 
 Distances are the routed walking distance (see below), not straight-line.
 `ROUTES.md` carries the per-leg breakdown and walk times. Utica and Ditmas are a
@@ -370,7 +375,7 @@ stop rather than letting the nudge grow.
 ellipsised in the legend grid; the run reports truncation per stop_id. The
 legend is 3 columns; short variants centre their rows in the band.
 
-The back of the card is a QR code to the interactive map. Eleven stops x four
+The back of the card is a QR code to the interactive map. Twelve stops x four
 content fields cannot fit on a 5x7; the card orients, the web map informs.
 
 ## Build
@@ -384,7 +389,7 @@ Left sidebar (collapsible — "Hide tour stops"):
 - Kicker + title + description, all from `metadata` (`edition`, `title`,
   `description`) — never hardcode the copy in the HTML
 - Route variant switcher reading `metadata.route_variants` — never a hardcoded list
-- "Show walking route" button (route is **hidden by default**) + stop-pins toggle
+- "Hide walking route" button (route is **shown by default**) + stop-pins toggle
 - Stop list in walking order for the active variant: numbered badge, `name`,
   `short`. Spur stops are tagged "optional"; first/last carry a Start / Finish
   tag. Clicking an item flies to the pin and opens its popup; clicking a pin
@@ -436,8 +441,8 @@ before reporting done.** Rules, all enforced in `web/index.html`:
 - **The sidebar becomes a bottom sheet under 680px** — 64dvh tall, collapsing
   down to its header bar as a grab handle rather than sliding fully off, so the
   map is never hidden behind a full-width panel.
-- The ~270-word overview collapses behind a **"What is this?"** toggle:
-  expanded on desktop, collapsed on mobile.
+- The ~270-word overview collapses behind a **"What is this?"** toggle,
+  **collapsed by default on both desktop and mobile**.
 
 **Never set `position` on `.pin`.** `.pin` and MapLibre's own
 `.maplibregl-marker { position: absolute }` have equal specificity, and this
@@ -489,8 +494,11 @@ the anchor, not as one pin among nine. Stops 5 and 6 are a matched pair (Con
 Edison's own FAQ names Railroad Playground); consider drawing that relationship
 explicitly rather than leaving it to the reader.
 
-Content status: all eleven descriptions rewritten (content v4; stop 2 replaced
-in v5 — "A Vacant Lot Reimagined"). See
-`STOP_DESCRIPTIONS.md` for the readable version and the verification notes.
+Content status: content v6. Chef's Choice removed (v6); Bracci Fence & Iron
+Works and the planned IBX Utica Avenue Station added to close out the Utica
+Walkshop (v6, stop_ids 12 and 13 — both carry `todo` verification flags, the
+IBX stop's placement especially: it's a placeholder near 1440 Utica Ave, not
+a confirmed station site). Stop 2 replaced in v5 — "A Vacant Lot Reimagined."
+See `STOP_DESCRIPTIONS.md` for the readable version and the verification notes.
 Do not invent facts. Items flagged "needs local confirmation" there must be
 checked before anything goes to print.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static 5x7 postcard map for the BKLVLUP Ecopower Infrastructure Walk.
+"""Static 5x7 postcard map for BKLVLUP's Power the Block Infrastructure Walking Tour.
 
 Reads data/tour.geojson (the only place stop data lives — never hand-edit it,
 never hardcode stop content here) and renders one route variant as a 7x5in
@@ -417,19 +417,43 @@ def draw_bottom_band(fig, bottom_ax, data, variant, stops, palette, basemap_key)
 
     # --- title block ---
     TITLE_PT, SUB_PT, STAT_PT, CRED_PT = 13.0, 8.5, 9.5, 7.5
+    TITLE_PT_FLOOR = 9.0  # never shrink the display title below this
     title_y = rule_y - 0.24
     sub_y = title_y - 0.215
-    bottom_ax.text(inner_x0, title_y, "ECOPOWER INFRASTRUCTURE WALK",
-                   fontsize=TITLE_PT, color=palette["lime"], fontweight="bold",
-                   ha="left", va="center", family="DejaVu Sans")
+
+    stats_artist = bottom_ax.text(
+        inner_x1, title_y, f"{variant['walk_miles']} mi  \u00b7  {variant['walk_minutes']} min walk",
+        fontsize=STAT_PT, color=palette["white"], ha="right", va="center",
+        family="DejaVu Sans", fontweight="bold")
+
+    # The title's length depends on metadata.title, which isn't under this
+    # script's control -- auto-shrink it to clear the stats text on the same
+    # line instead of letting the two collide (see CLAUDE.md > Voice/Type).
+    renderer = fig.canvas.get_renderer()
+    stats_w_in = stats_artist.get_window_extent(renderer=renderer).width / fig.dpi
+    title_max_w_in = inner_w - stats_w_in - 0.35  # gutter between title and stats
+
+    title_text = data["metadata"]["title"].upper()
+    title_pt = TITLE_PT
+    title_artist = bottom_ax.text(inner_x0, title_y, title_text, fontsize=title_pt,
+                                  color=palette["lime"], fontweight="bold",
+                                  ha="left", va="center", family="DejaVu Sans")
+    while True:
+        title_w_in = title_artist.get_window_extent(renderer=renderer).width / fig.dpi
+        if title_w_in <= title_max_w_in or title_pt <= TITLE_PT_FLOOR:
+            break
+        title_pt -= 0.5
+        title_artist.set_fontsize(title_pt)
+    if title_w_in > title_max_w_in:
+        print(f"[render] WARNING: title '{title_text}' still overflows into the "
+              f"stats text at the {TITLE_PT_FLOOR}pt floor ({title_w_in:.2f}in > "
+              f"{title_max_w_in:.2f}in available); shorten metadata.title or widen the layout.",
+              file=sys.stderr)
+
     bottom_ax.text(inner_x0, sub_y,
                    f"{variant['name']} \u00b7 {variant['gather']} to {variant['end']}",
                    fontsize=SUB_PT, color=palette["muted"], ha="left", va="center",
                    family="DejaVu Sans")
-    bottom_ax.text(inner_x1, title_y,
-                   f"{variant['walk_miles']} mi  \u00b7  {variant['walk_minutes']} min walk",
-                   fontsize=STAT_PT, color=palette["white"], ha="right", va="center",
-                   family="DejaVu Sans", fontweight="bold")
     bottom_ax.text(inner_x1, sub_y, "BKLVLUP \u00d7 GROUND3D", fontsize=CRED_PT,
                    color=palette["muted"], ha="right", va="center",
                    family="DejaVu Sans", style="italic")
