@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Ecopower Infrastructure Walk — BKLVLUP</title>
+<title>Power the Block Infrastructure Walking Tour — BKLVLUP</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.js"></script>
@@ -470,11 +470,11 @@
   <div id="sidebar-scroll">
     <div id="tour-intro">
       <div id="tour-kicker"></div>
-      <h1 id="tour-title">Ecopower Infrastructure Walk</h1>
-      <button id="overview-toggle" type="button" aria-expanded="true" aria-controls="tour-desc">
+      <h1 id="tour-title">Power the Block Infrastructure Walking Tour</h1>
+      <button id="overview-toggle" type="button" aria-expanded="false" aria-controls="tour-desc">
         <span>What is this?</span><span class="caret">&#9662;</span>
       </button>
-      <div id="tour-desc"></div>
+      <div id="tour-desc" hidden></div>
     </div>
 
     <div id="controls">
@@ -483,8 +483,8 @@
       <p id="variant-blurb"></p>
       <div id="variant-meta"></div>
 
-      <button id="route-btn" type="button">Show walking route</button>
-      <div id="route-hint">Route hidden by default.</div>
+      <button id="route-btn" type="button">Hide walking route</button>
+      <div id="route-hint">Drawn on the OpenStreetMap sidewalk network.</div>
 
       <label id="pins-row"><input type="checkbox" id="toggle-pins" checked> Show numbered stop pins</label>
     </div>
@@ -542,7 +542,7 @@
 
   let geodata = null, variants = [], currentVariant = null, currentVariantObj = null;
   let markers = [], activeId = null;
-  let pinsVisible = true, routeVisible = false;
+  let pinsVisible = true, routeVisible = true;
   let styleReady = false, fellBack = false, didInitialFit = false;
   let theme = 'light';
 
@@ -633,7 +633,7 @@
   el.reopen.addEventListener('click', () => setCollapsed(false));
   el.theme.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark', true));
 
-  // overview: expanded on desktop, collapsed on mobile
+  // overview: starts collapsed on both desktop and mobile
   function setOverview(open) {
     el.desc.hidden = !open;
     el.ovToggle.setAttribute('aria-expanded', String(open));
@@ -672,7 +672,7 @@
       renderLegend();
       buildVariantSwitcher();
       applyTheme(theme, false);
-      setOverview(!NARROW());
+      setOverview(false);
       if (NARROW()) setCollapsed(false);
       tryInit();
     })

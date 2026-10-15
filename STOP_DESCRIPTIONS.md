@@ -1,4 +1,4 @@
-# Ecopower Infrastructure Walk — Stop Descriptions (v4)
+# Power the Block Infrastructure Walking Tour — Stop Descriptions (v4)
 
 **The Green Book — Energy Resilience Edition** · BKLVLUP × GROUND3D
 
@@ -117,6 +117,29 @@ BKLVLUP's Brownfield Opportunity Area (BOA) application for the Utica Avenue / F
 
 ---
 
+## 13. IBX Utica Avenue Station (planned)
+*Utica Ave, Brooklyn, NY (exact site not yet determined)* · scale: **Regional** · access: sidewalk · map label: **Planned IBX light rail stop**
+
+**Description** *(shown in map popups)*
+
+The MTA's Interborough Express (IBX) is a planned 14-mile light rail line connecting Bay Ridge, Brooklyn to Jackson Heights, Queens along an existing freight rail corridor, with Utica Avenue identified as one of two stops serving this part of Brooklyn (the other is Remsen Avenue). No exact platform site has been chosen; the MTA's own station maps mark it only as "Utica Avenue," and the corridor runs immediately next to 1440 Utica Ave, so this pin marks the area rather than a confirmed point. Within a 30-minute transit trip, MTA projects the area around this station would gain access to 3.8 times the jobs it can reach today (234,000 to 886,000) and 4.2 times the higher-education institutions (5 to 21).
+
+**Energy connection**
+
+IBX is itself an energy story: trading car trips and bus transfers for an electrified light rail cuts fuel burned per rider, and the MTA's own planning briefings describe coordinating with Con Edison on grid capacity for the line, the same utility and the same kind of planning conversation as the Gateway Park Substation earlier on this walk. Two new electrified passenger tracks would share the right-of-way with existing diesel freight service.
+
+**Conversation**
+
+A transit project at this scale moves on its own timeline, mostly decided somewhere else. What does East Flatbush want to see built around a station before it arrives, rather than reacting to whatever gets built after? Who is at the table now, while the corridor is still being planned, versus who shows up once construction starts?
+
+**Resource**
+
+Project page and comment form: new.mta.info/ibx. Email IBXOutreach@mtacd.org with questions or comments at any time; comments also carry weight during the SEQRA environmental review's public hearings. BKLVLUP's Brownfield Opportunity Area application for this corridor is the organized, local vehicle for shaping what happens here.
+
+> **VERIFY before publishing: this coordinate is a placeholder near 1440 Utica Ave, not a confirmed station site -- the MTA has stated exact station locations are subject to change during design. Update once MTA publishes a specific site, and recheck the ridership/access figures against the current DEIS when it is released (cited figures are from the April 2026 Brooklyn CB17 briefing).**
+
+---
+
 ## 6. De Event Room
 *634 Remsen Ave, Brooklyn, NY 11236* · scale: **Block** · access: booking · map label: **Private event space**
 
@@ -164,7 +187,7 @@ NYC Parks takes tree service and new tree requests through 311 and the Forestry 
 
 **Description** *(shown in map popups)*
 
-Con Edison is building the Gateway Park Substation here at a cost of $1.3 billion. It's an indoor high-voltage transmission substation: a building rather than an open yard of exposed equipment, a more expensive choice made for a dense residential setting. When complete it will serve roughly 52,000 customers across Central and East Brooklyn, primarily Canarsie and Remsen Village. The project includes about 7.5 miles of new underground feeder cable connecting it into the network, part of a larger cable program reported at around 28 miles. Con Edison's stated reasons for building it are capacity, overload prevention, and network resiliency: the company projects Brooklyn's electricity demand will rise roughly 16 percent over the next decade, driven by population growth, new development, and the shift from gas to electric heating, cooking, and vehicles. Power will reach this station through underground transmission from the Brooklyn Clean Energy Hub in Vinegar Hill, an $810 million transmission substation built to accept up to 1,500 megawatts and designed as an interconnection point for offshore wind generated in the New York Bight, roughly 150 miles off the coast of Long Island and New Jersey.
+Con Edison built the Gateway Park Substation here at a cost of $1.3 billion, and it is now active and in service. It's an indoor high-voltage transmission substation: a building rather than an open yard of exposed equipment, a more expensive choice made for a dense residential setting. It now serves roughly 52,000 customers across Central and East Brooklyn, primarily Canarsie and Remsen Village. The project includes about 7.5 miles of new underground feeder cable connecting it into the network, part of a larger cable program reported at around 28 miles. Con Edison's stated reasons for the project are capacity, overload prevention, and network resiliency: the company projects Brooklyn's electricity demand will rise roughly 16 percent over the next decade, driven by population growth, new development, and the shift from gas to electric heating, cooking, and vehicles. Power reaches this station through underground transmission from the Brooklyn Clean Energy Hub in Vinegar Hill, an $810 million transmission substation built to accept up to 1,500 megawatts and designed as an interconnection point for offshore wind generated in the New York Bight, roughly 150 miles off the coast of Long Island and New Jersey.
 
 **Energy connection**
 
